@@ -109,7 +109,7 @@ This forms the foundation of modern Security Operations Centers (SOCs).
 
 
 
-![Sysmon Installed](screenshots/sysmon-operational.png)
+![Architecture](Screenshots/16_architechture_drawing.png)
 
 
 
