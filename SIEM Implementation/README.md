@@ -14,13 +14,6 @@ Because Splunk Enterprise and the Windows Universal Forwarder do not officially 
 
 ---
 
-## Related Article
-
-I documented the learning journey and lessons learned in more detail on Medium:
-[Endpoint monitoring lab](https://medium.com/@koskiddoo/why-sysmon-changed-the-way-i-look-at-windows-activity-78006167e2a9)
-
----
-
 
 ## Objectives
 
@@ -141,11 +134,6 @@ Although this approach does not provide live forwarding, it allowed me to practi
 The architecture can later be upgraded to real-time forwarding on supported hardware.
 
 
-
-![Powershell-session](screenshots/powershell-getevent-sysmon.png)
-
-
-
 ---
 
 ## Implementation
@@ -161,12 +149,8 @@ To generate meaningful data, I performed several normal endpoint activities incl
 
 These actions generated Windows Security and Sysmon events for analysis.
 
-📸 Screenshot
 
-powershell-activity.png
-
-
-![Powershell-session](screenshots/powershell-getevent-sysmon.png)
+![Powershell-Activity](Screenshots/01_powershell_activity.png)
 
 
 
@@ -182,12 +166,9 @@ Windows Security and Sysmon logs were exported from Event Viewer before being pr
 
 This approach preserved the event metadata while avoiding unsupported ARM forwarding.
 
-📸 Screenshot
-
-log-export.png
 
 
-![Powershell-session](screenshots/powershell-getevent-sysmon.png)
+![Log Export](Screenshots/02_log_export.png)
 
 
 
@@ -207,11 +188,9 @@ During onboarding I verified:
 - Event count
 - Timestamp parsing
 
-📸 Screenshot
 
-splunk-upload-preview.png
 
-![Powershell-session](screenshots/powershell-getevent-sysmon.png)
+![Splunk Data onboarding](Screenshots/03_splunk_data_onboarding.png)
 
 
 
@@ -229,11 +208,9 @@ After indexing, I verified:
 
 This validation is essential because inaccurate timestamps can lead to incorrect investigation timelines.
 
-📸 Screenshot
 
-timestamp-validation.png
 
-![Powershell-session](screenshots/powershell-getevent-sysmon.png)
+![Splunk Data onboarding](Screenshots/03_splunk_data_onboarding.png)
 
 
 
@@ -308,7 +285,7 @@ splunk-dashboard.png
 
 
 
-![parent-child-process](screenshots/parent-child-relationship.png)
+![Splunk Dashboard](Screenshots/00_splunk_Dashboard.png)
 
 
 
