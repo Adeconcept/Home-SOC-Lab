@@ -12,7 +12,7 @@ This lab demonstrates a simplified SIEM architecture built around Windows endpoi
 ## Data Flow
 
 
-![Splunk Data onboarding](Screenshots/03_splunk_data_onboarding.png)
+![Architecture](Screenshots/16_architechture_drawing.png)
 
 
 ## Design Decisions
