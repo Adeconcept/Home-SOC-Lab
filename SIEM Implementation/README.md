@@ -240,23 +240,23 @@ The investigation followed a simple SOC workflow:
 
 Examples of searches performed during this lab:
 
-### 01 View all indexed events
+#### 01 View all indexed events
 
 _index=endpoint_
 
-### 02 Search PowerShell execution
+#### 02 Search PowerShell execution
 
 _index=main message=powershell_
 
-### Search Sysmon Process Creation events
+#### Search Sysmon Process Creation events
 
 _index=main EventCode=1_
 
-### Search successful & failedlogons
+#### Search successful & failedlogons
 
 _index=main EventCode=4624 AND 4625_
 
-### Count events by source
+#### Count events by source
 
 _index=main_
 _| stats count by sourcetype_
