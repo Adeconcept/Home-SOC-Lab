@@ -1,0 +1,31 @@
+# Detection
+
+Outbound Network Connections
+
+## Objective
+
+Review endpoint network communication.
+
+## Analyst Question
+
+Which outbound connections were established by endpoint processes?
+
+## Data Source
+
+Sysmon Network Events
+
+## SPL
+
+```spl
+index=main network
+| table _time Image DestinationIp DestinationHostname DestinationPort User host
+| sort _time
+```
+
+## Expected Output
+
+Outbound network connections associated with endpoint processes.
+
+## Investigation Notes
+
+Network activity should be evaluated alongside process creation and DNS events. A network connection alone does not indicate malicious behaviour, but unexpected destinations, uncommon ports, or unusual execution sequences may warrant further investigation.
