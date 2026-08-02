@@ -353,21 +353,16 @@ The investigation also highlighted the value of correlating multiple events rath
 # Screenshots
 
 ```markdown
-![Failed logon events](screenshots/case-001-01-failed-logon-events.png)
+![Failed logon events](Screenshots/case_001_01_failed_logon_events.png)
 
 *Figure 1. Windows Event ID 4625 events associated with the controlled laboratory account during the documented investigation window.*
 
 ---
 
-![Authentication counts](screenshots/case-001-02-logon-counts.png)
+![Authentication counts](Screenshots/case_001_02_logon_counts.png)
 
 *Figure 2. Summary of failed authentication attempts observed for the investigated account.*
 
----
-
-![Authentication timeline](screenshots/case-001-03-failure-timeline.png)
-
-*Figure 3. Chronological reconstruction of authentication events showing three failed logons followed by one successful authentication.*
 ```
 
 ---
