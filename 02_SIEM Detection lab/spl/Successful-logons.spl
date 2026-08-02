@@ -1,0 +1,33 @@
+# Detection
+
+Successful Logons
+
+## Objective
+
+Review successful Windows authentication events.
+
+## Analyst Question
+
+Which users authenticated successfully during the investigation window?
+
+## Data Source
+
+Windows Security Log
+
+Event ID 4624
+
+## SPL
+
+```spl
+index=main EventCode=4624
+| table _time Account_Name Logon_Type Authentication_Package host
+| sort _time
+```
+
+## Expected Output
+
+A chronological list of successful authentication events.
+
+## Investigation Notes
+
+Correlating successful logons with previous authentication failures provides valuable context during brute-force investigations.
