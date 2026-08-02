@@ -1,0 +1,31 @@
+# Detection
+
+Sysmon Process Creation
+
+## Objective
+
+Review newly created processes.
+
+## Analyst Question
+
+Which processes were created during the investigation period?
+
+## Data Source
+
+Sysmon Event ID 1
+
+## SPL
+
+```spl
+index=main EventCode=1
+| table _time ParentImage Image CommandLine User host
+| sort _time
+```
+
+## Expected Output
+
+A timeline of process creation events showing process lineage and execution details.
+
+## Investigation Notes
+
+Parent-child process relationships are essential when investigating suspicious execution chains.
