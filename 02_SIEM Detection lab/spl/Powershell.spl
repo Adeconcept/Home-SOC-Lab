@@ -1,0 +1,39 @@
+# Detection
+
+PowerShell Execution
+
+## Objective
+
+Identify PowerShell process execution recorded by Sysmon.
+
+## Analyst Question
+
+Was PowerShell executed, and if so, how?
+
+## Data Source
+
+Sysmon Event ID 1
+
+## SPL
+
+```spl
+index=main powershell
+| table _time ParentImage Image CommandLine User host
+| sort _time
+```
+
+## Expected Output
+
+PowerShell process creation events including parent process, executed command, user, and host.
+
+## Investigation Notes
+
+PowerShell execution is a valuable detection signal but should always be evaluated alongside:
+
+* Parent-child process relationships
+* Command-line arguments
+* User context
+* Timeline
+* Additional endpoint telemetry
+
+PowerShell execution alone is not evidence of malicious activity.
