@@ -186,7 +186,7 @@ This repeatable methodology ensures investigations remain evidence-based rather 
 
 Multiple failed authentication events were identified within a short period.
 
-
+---
 
 #### Initial Hypothesis
 
@@ -199,6 +199,7 @@ Repeated authentication failures may indicate:
 
 Further investigation was required before drawing conclusions.
 
+---
 
 #### Evidence Reviewed
 
@@ -209,13 +210,13 @@ Further investigation was required before drawing conclusions.
 - Timestamp
 - Logon Type
 
-  
+---
 
 #### Timeline
 
 Five failed authentication attempts occurred before one successful logon.
 
-  
+--- 
 
 #### Analysis
 
@@ -230,7 +231,7 @@ No additional hosts participated.
 The available evidence supports normal laboratory testing rather than malicious authentication activity.
 
 
-  
+ --- 
 
 #### MITRE ATT&CK Context
 
@@ -240,7 +241,7 @@ Potential Technique:
 
 _Not confirmed._
 
-
+---
 
 #### Investigation Outcome
 
@@ -251,6 +252,7 @@ _Not confirmed._
 | Confidence | High |
 | Status | Closed |
 
+---
 
 #### Recommended Action
 
@@ -281,7 +283,7 @@ Continue monitoring authentication behaviour.
 
 PowerShell execution was identified within Sysmon telemetry.
 
-
+---
 
 #### Initial Hypothesis
 
@@ -294,6 +296,7 @@ PowerShell execution could represent:
 
 Further analysis was required.
 
+---
 
 #### Evidence Reviewed
 
@@ -304,13 +307,13 @@ Further analysis was required.
 - Command Line
 - Timestamp
 
-  
+--- 
 
 #### Timeline
 
 PowerShell launched shortly after interactive user logon.
   
-
+---
 
 #### Analysis
 
@@ -322,7 +325,7 @@ The command executed matched the documented lab activities.
 
 Although PowerShell is frequently abused by attackers, the available evidence supports authorized execution.
 
-  
+---  
 
 #### MITRE ATT&CK Context
 
@@ -332,7 +335,7 @@ Potential Technique:
 
 _Observed but not malicious._
 
-
+---
 
 #### Investigation Outcome
 
@@ -343,6 +346,7 @@ _Observed but not malicious._
 | Confidence | High |
 | Status | Closed |
 
+---
 
 #### Recommended Action
 
@@ -378,7 +382,7 @@ Continue monitoring PowerShell activity for unusual execution patterns.
 
 Process creation events and associated DNS and network activity were reviewed.
 
-
+---
 
 #### Initial Hypothesis
 
@@ -391,6 +395,7 @@ The observed activity could indicate:
 
 Evidence was reviewed before classification.
 
+---
 
 #### Evidence Reviewed
 
@@ -400,13 +405,13 @@ Evidence was reviewed before classification.
 - Process Metadata
 - Timestamp
 
-  
+---  
 
 #### Timeline
 
 Process execution preceded DNS resolution and normal network communication.
   
-
+---
 
 #### Analysis
 
@@ -418,7 +423,7 @@ The timing and event sequence matched expected application behaviour.
 
 No indicators suggested persistence, lateral movement, or malicious outbound communication.
   
-
+---
 
 #### Investigation Outcome
 
@@ -429,6 +434,7 @@ No indicators suggested persistence, lateral movement, or malicious outbound com
 | Confidence | High |
 | Status | Closed |
 
+---
 
 #### Recommended Action
 
