@@ -1,6 +1,6 @@
 # Home SOC Lab, Part 2: SIEM Detection Lab: Windows Event Investigation with Splunk
 
-> Security Investigation & Detection Engineering
+> Security investigation & Detection engineering
 
 ---
 
