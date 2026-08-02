@@ -20,7 +20,7 @@ The architecture prioritizes:
 
 ---
 
-# Architecture Overview
+## Architecture Overview
 
 
 ![Architecture](Screenshots/00_architechture_drawing.png)
@@ -29,19 +29,19 @@ The architecture prioritizes:
 
 ---
 
-# Architecture Components
+## Architecture Components
 
-## 1. Host Machine
+### 1. Host Machine
 
 **Platform**
 
 MacBook Air M1
 
-### Purpose
+#### Purpose
 
 Acts as the primary workstation hosting the virtual lab environment.
 
-### Responsibilities
+#### Responsibilities
 
 * Run virtualization software
 * Store exported telemetry
@@ -50,33 +50,33 @@ Acts as the primary workstation hosting the virtual lab environment.
 
 ---
 
-## 2. Virtualization Layer
+### 2. Virtualization Layer
 
 **Platform**
 
 UTM
 
-### Purpose
+#### Purpose
 
 Provide an isolated Windows environment for generating endpoint telemetry.
 
-### Why UTM?
+#### Why UTM?
 
 UTM supports Apple Silicon devices and allows Windows ARM virtual machines to run efficiently without modifying the host operating system.
 
 ---
 
-## 3. Windows Endpoint
+### 3. Windows Endpoint
 
 **Operating System**
 
 Windows 11 ARM
 
-### Purpose
+#### Purpose
 
 Serve as the monitored endpoint.
 
-### Activities Generated
+#### Activities Generated
 
 * User logon
 * PowerShell execution
@@ -89,18 +89,18 @@ These actions generated telemetry for investigation.
 
 ---
 
-## 4. Windows Security Logs
+### 4. Windows Security Logs
 
-### Purpose
+#### Purpose
 
 Record native Windows security events.
 
-### Events Reviewed
+#### Events Reviewed
 
 * Event ID 4624
 * Event ID 4625
 
-### Investigation Value
+#### Investigation Value
 
 These logs provide authentication evidence including:
 
@@ -112,13 +112,13 @@ These logs provide authentication evidence including:
 
 ---
 
-## 5. Sysmon
+### 5. Sysmon
 
-### Purpose
+#### Purpose
 
 Extend Windows logging by providing richer endpoint telemetry.
 
-### Events Used
+#### Events Used
 
 * Event ID 1 (Process Creation)
 
@@ -129,7 +129,7 @@ Additional Sysmon telemetry may include:
 * Process termination
 * Image loading
 
-### Investigation Value
+#### Investigation Value
 
 Sysmon provides context that is not always available in native Windows Security logs, including:
 
@@ -141,7 +141,7 @@ Sysmon provides context that is not always available in native Windows Security 
 
 ---
 
-# Why Sysmon?
+## Why Sysmon?
 
 Windows Security logs answer questions such as:
 
@@ -158,7 +158,7 @@ That additional visibility is essential during endpoint investigations.
 
 ---
 
-# Telemetry Collection
+## Telemetry Collection
 
 Telemetry was intentionally generated through controlled user activity.
 
@@ -175,7 +175,7 @@ All telemetry originated from authorized laboratory activity.
 
 ---
 
-# Log Export Strategy
+## Log Export Strategy
 
 Because the Windows Universal Forwarder is not officially supported in this ARM-based lab environment, telemetry was exported manually before ingestion into Splunk.
 
@@ -196,7 +196,7 @@ No continuous real-time forwarding.
 
 
 
-# Splunk Data Pipeline
+## Splunk Data Pipeline
 
 The exported logs followed the following workflow:
 
@@ -214,7 +214,7 @@ Each stage was validated before moving to the next.
 
 
 
-# Investigation Workflow
+## Investigation Workflow
 
 Every investigation followed the same repeatable methodology.
 
@@ -229,57 +229,57 @@ This approach helps reduce assumptions and supports evidence-based decision maki
 
 ---
 
-# Design Decisions
+## Design Decisions
 
-## Hosted Splunk
+### Hosted Splunk
 
-### Decision
+#### Decision
 
 Use Splunk Cloud rather than a locally hosted Splunk Enterprise instance.
 
-### Reason
+#### Reason
 
 Avoid unsupported ARM deployment while still practicing SIEM workflows.
 
 ---
 
-## Manual Log Export
+### Manual Log Export
 
-### Decision
+#### Decision
 
 Export Windows Security and Sysmon logs before ingestion.
 
-### Reason
+#### Reason
 
 Maintains compatibility with ARM hardware and preserves investigation quality.
 
 ---
 
-## Single Endpoint
+### Single Endpoint
 
-### Decision
+#### Decision
 
 Investigate one Windows endpoint.
 
-### Reason
+#### Reason
 
 Simplifies validation and allows focus on investigation methodology before expanding to multiple systems.
 
 ---
 
-## Structured Incident Reports
+### Structured Incident Reports
 
-### Decision
+#### Decision
 
 Separate each investigation into its own report.
 
-### Reason
+#### Reason
 
 This mirrors real SOC documentation practices and keeps investigations independent, reusable, and easier to review.
 
 ---
 
-# Security Considerations
+## Security Considerations
 
 The lab was designed to remain safe throughout testing.
 
@@ -293,7 +293,7 @@ Measures included:
 
 ---
 
-# Current Limitations
+## Current Limitations
 
 The current implementation intentionally has several limitations.
 
@@ -308,7 +308,7 @@ These limitations are documented to accurately represent the project.
 
 ---
 
-# Future Architecture
+## Future Architecture
 
 Future versions of this lab will introduce additional components.
 
