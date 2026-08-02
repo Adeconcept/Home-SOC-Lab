@@ -351,6 +351,22 @@ No action required.
 Continue monitoring PowerShell activity for unusual execution patterns.
 
 
+![PowerShell process creation](Screenshots/case_002_01_powershell_process_events.png)
+
+*Figure 1. Sysmon Event ID 1 showing PowerShell process creation during the documented laboratory activity.*
+
+---
+
+![PowerShell command-line details](Screenshots/case_002_02_encoded_command.png)
+
+*Figure 2. Command-line arguments associated with the PowerShell process. Command-line analysis provides valuable context but should always be interpreted alongside additional evidence.*
+
+---
+
+![Parent-child process relationship](Screenshots/case_002_03_parent_process_analysis.png)
+
+*Figure 3. Parent-child process relationship demonstrating explorer.exe launching powershell.exe, consistent with expected interactive user activity.*
+
 
 ---
 
