@@ -1,0 +1,41 @@
+# Detection
+
+Repeated Failed Logons
+
+## Objective
+
+Identify Windows authentication failures that may require investigation.
+
+## Analyst Question
+
+Which accounts experienced failed authentication attempts?
+
+## Data Source
+
+Windows Security Log
+
+Event ID 4625
+
+## SPL
+
+```spl
+index=main EventCode=4625
+| table _time Account_Name Logon_Type Source_Network_Address host
+| sort _time
+```
+
+## Expected Output
+
+A chronological list of failed authentication attempts including the affected account, logon type, source address, and host.
+
+## Investigation Notes
+
+Repeated authentication failures may indicate:
+
+* Incorrect password
+* Password changes
+* User error
+* Password spraying
+* Brute-force attempts
+
+Further investigation is required before classifying the activity as malicious.
