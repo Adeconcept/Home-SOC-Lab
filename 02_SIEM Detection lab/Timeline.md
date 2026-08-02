@@ -178,15 +178,7 @@ Determine whether endpoint process execution resulted in unusual DNS or network 
 
 The observed sequence followed a typical application workflow:
 
-Process Creation
-
-↓
-
-DNS Resolution
-
-↓
-
-Outbound Network Connection
+Process Creation –>> DNS Resolution –>> Outbound Network Connection
 
 The telemetry matched expected application behaviour within the controlled lab environment.
 
