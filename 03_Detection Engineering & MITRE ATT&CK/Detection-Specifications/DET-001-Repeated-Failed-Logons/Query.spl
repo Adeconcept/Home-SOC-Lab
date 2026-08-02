@@ -1,0 +1,13 @@
+index=endpoint
+source="det001-security.csv"
+Id="4625"
+| rex field=Message "Account For Which Logon Failed:[\s\S]*?Account Name:\s+(?<TargetUser>[^\r\n]+)"
+| bin _time span=10m
+| stats
+    count AS failed_attempts
+    earliest(_time) AS first_seen
+    latest(_time) AS last_seen
+  by _time host TargetUser
+| where failed_attempts >= 5
+| convert ctime(first_seen) ctime(last_seen)
+| table _time host TargetUser failed_attempts first_seen last_seen
