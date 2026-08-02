@@ -1,0 +1,85 @@
+# Week 7 Project Report
+
+## Project
+
+**Threat Detection Lab: Splunk Detections Mapped to MITRE ATT&CK**
+
+## Purpose
+
+Convert Week 6 investigation findings into reusable detections that can identify similar behaviour in future Windows telemetry.
+
+## Outcome Summary
+
+| Detection | Intended outcome | Evidence required | Current documentation status |
+|---|---|---|---|
+| DET-001 | Identify five or more failed logons for one account within ten minutes | Matching Event ID 4625 result and boundary tests | Ready for evidence |
+| DET-002 | Identify PowerShell with encoded-command arguments | Matching Sysmon Event ID 1 result and extracted context | Ready for evidence |
+| DET-003 | Identify PowerShell network activity, or DNS activity when Event ID 3 is unavailable | Matching Event ID 3 or 22 result | Ready for evidence |
+
+## Decisions and Value
+
+### 1. Detection scope was kept narrow
+
+Broad searches such as all PowerShell execution are useful for hunting, but unsuitable for alerting because they create excessive noise. DET-002 therefore focuses on encoded-command arguments.
+
+**Value:** Improves signal quality and makes analyst review more manageable.
+
+### 2. Thresholds were documented as assumptions
+
+DET-001 uses five failures in ten minutes as a controlled learning threshold. It is not presented as an industry standard.
+
+**Value:** Shows risk-aware judgment and avoids presenting lab settings as production-ready defaults.
+
+### 3. Context was separated from core detection logic
+
+A successful logon after repeated failures is checked through an enrichment query rather than added to the first version of DET-001.
+
+**Value:** Keeps the primary detection understandable while preserving a path for higher-risk triage.
+
+### 4. Telemetry claims were kept accurate
+
+DET-003 is only described as outbound network activity when Sysmon Event ID 3 is available. Event ID 22 is documented as DNS activity, not as proof of a network connection.
+
+**Value:** Prevents misleading conclusions and demonstrates evidence-based reporting.
+
+### 5. ATT&CK mapping was intentionally limited
+
+DET-003 remains primarily mapped to T1059.001 PowerShell. It is not mapped to command and control based only on a web request.
+
+**Value:** Keeps the coverage map defensible and avoids exaggerated portfolio claims.
+
+## Detection Quality Approach
+
+The project uses actual test counts rather than percentages from a small sample:
+
+- Positive tests passed: `[Add actual count]`
+- Negative tests passed: `[Add actual count]`
+- Boundary tests passed: `[Add actual count]`
+- Repeat tests passed: `[Add actual count]`
+- Known false positives observed: `[Add actual count]`
+- Telemetry gaps: `[Add actual gaps]`
+
+## Operational Value
+
+The detections provide:
+
+- Faster identification of repeated authentication failures
+- Better visibility into encoded PowerShell execution
+- Context for PowerShell-related DNS or outbound activity
+- Repeatable analyst response steps
+- A documented basis for future tuning and automation
+
+## Risk and Limitations
+
+The lab uses batch-uploaded CSV files rather than continuous log ingestion. The detections therefore demonstrate logic and validation quality, not a production monitoring service.
+
+Encoded PowerShell and PowerShell network activity can be legitimate. Every alert requires review of user, host, command line, parent process, destination, and nearby activity.
+
+## Next Improvements
+
+1. Replace CSV parsing with normalized field extraction.
+2. Add continuous endpoint ingestion.
+3. Baseline normal authentication and PowerShell activity.
+4. Add destination reputation and script-signing context.
+5. Version detections and schedule periodic revalidation.
+6. Add a successful-login-after-failures risk modifier.
