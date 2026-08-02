@@ -1,0 +1,10 @@
+index=endpoint
+source="det003-sysmon.csv"
+Id="3"
+Message="*powershell.exe*"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "DestinationIp:\s+(?<DestinationIp>[^\r\n]+)"
+| rex field=Message "DestinationPort:\s+(?<DestinationPort>[^\r\n]+)"
+| rex field=Message "Protocol:\s+(?<Protocol>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time host User Image DestinationIp DestinationPort Protocol
