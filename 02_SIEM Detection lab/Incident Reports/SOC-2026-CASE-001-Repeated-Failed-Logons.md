@@ -353,7 +353,7 @@ The investigation also highlighted the value of correlating multiple events rath
 # Screenshots
 
 
-![Failed logon events](Screenshots/case_001_01_failed_logon_events.png)
+![Failed logon events](Screenshots/case_001_02_logon_counts.png)
 
 *Figure 1. Windows Event ID 4625 events associated with the controlled laboratory account during the documented investigation window.*
 
