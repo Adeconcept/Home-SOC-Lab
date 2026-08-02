@@ -1,0 +1,8 @@
+index=endpoint
+source="det003-sysmon.csv"
+Id="22"
+Message="*powershell.exe*"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "QueryName:\s+(?<QueryName>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time host User Image QueryName
