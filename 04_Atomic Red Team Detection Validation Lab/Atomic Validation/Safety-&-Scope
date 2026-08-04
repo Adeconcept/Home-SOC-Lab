@@ -1,0 +1,58 @@
+# Safety and Scope
+
+## Authorized System
+
+- Host: `SOC-WIN11`
+- Platform: Windows 11 ARM
+- Hypervisor: UTM
+- Environment: Personal isolated lab
+
+## Authorized Techniques
+
+| Validation | Technique | Approved behaviour |
+|---|---|---|
+| VAL-001 | T1082 | Read basic system details |
+| VAL-002 | T1016 | Read local network configuration |
+| VAL-003 | T1059.003 | Create or display harmless text through command shell |
+| VAL-004 | T1027 | Run reviewed PowerShell that prints harmless text |
+
+## Prohibited Activity
+
+- Credential dumping or LSASS access
+- Mimikatz
+- Process injection
+- Persistence
+- Ransomware simulation
+- UAC bypass
+- Remote execution
+- Browser credential extraction
+- Defender or firewall disabling
+- Destructive activity
+- Real malware
+- Unknown payload downloads
+- Unreviewed tests
+- Execution outside the lab VM
+
+## Safety Controls
+
+| Control | Reason |
+|---|---|
+| Pre-test UTM snapshot | Provides rollback |
+| Defender remains enabled | Avoids weakening the environment |
+| Exact test review | Prevents accidental execution |
+| Specific test number only | Avoids running an entire technique |
+| Recorded test window | Supports accurate evidence collection |
+| Cleanup reviewed first | Confirms reversibility |
+| Cleanup verification | Proves endpoint recovery |
+
+## Stop Conditions
+
+Stop when the system identity is wrong, the test definition differs, an unknown download appears, a security exclusion is requested, or cleanup cannot be explained.
+
+## Recovery Plan
+
+1. Stop further execution.
+2. Record the unexpected result.
+3. Run reviewed cleanup when safe.
+4. Verify files, processes, services, Defender, and Sysmon.
+5. Restore `PRE-WEEK8-ATOMIC-TESTING` when cleanup cannot return the VM to baseline.
