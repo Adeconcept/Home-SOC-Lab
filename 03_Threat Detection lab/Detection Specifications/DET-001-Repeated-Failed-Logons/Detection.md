@@ -4,6 +4,11 @@
 
 Identifies five or more failed Windows logons for the same account and host within a ten-minute bucket.
 
+
+---
+
+
+
 ## Status
 
 | Field | Value |
@@ -16,11 +21,22 @@ Identifies five or more failed Windows logons for the same account and host with
 | Event ID | 4625 |
 | ATT&CK | T1110.001 Password Guessing |
 
+
+---
+
+
+
 ## Detection Hypothesis
 
 Five or more failed logons for one account within ten minutes may indicate password guessing, forgotten credentials, stale stored credentials, or an authentication configuration problem.
 
 The threshold is a lab decision, not an industry standard.
+
+
+---
+
+
+
 
 ## Detection Logic
 
@@ -32,6 +48,11 @@ The threshold is a lab decision, not an industry standard.
 
 Query: [Query.spl](Query.spl)
 
+
+---
+
+
+
 ## Decision Record
 
 | Decision | Why | Value |
@@ -41,13 +62,29 @@ Query: [Query.spl](Query.spl)
 | Keep successful logon as enrichment | Success changes risk but is not required for the initial behaviour | Keeps version 1 understandable |
 | Initial severity is Low | Repeated failures are common and need context | Reduces overstatement |
 
+
+
+---
+
+
 ## Trigger
 
 A result is produced when `failed_attempts >= 5`.
 
+
+---
+
+
+
 ## Analyst Context
 
 After a match, review Event IDs 4624 and 4625 for the same account to determine whether a successful logon followed the failures.
+
+
+---
+
+
+
 
 ## Known False Positives
 
@@ -58,6 +95,11 @@ After a match, review Event IDs 4624 and 4625 for the same account to determine 
 - VPN or application repeatedly retries
 - Authorized testing
 
+
+---
+
+
+
 ## Limitations
 
 - Source IP and logon type may remain embedded in `Message`.
@@ -65,9 +107,9 @@ After a match, review Event IDs 4624 and 4625 for the same account to determine 
 - A match does not confirm malicious intent.
 - Production thresholds require account and environment baselining.
 
-## Evidence
+---
 
-Add:
+## Evidence
 
 - Base 4625 events
 - Extracted `TargetUser`
@@ -75,3 +117,25 @@ Add:
 - Five-failure trigger result
 - Authentication timeline
 - Alert or saved-report configuration
+
+
+![Initial 4625 reveal](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/08_DET_001_targetuser_extract.png)
+
+*Figure 1. Windows Event ID 4625 events associated with the controlled laboratory account during the documented investigation window.*
+
+
+
+
+
+![Failed logon events metadata](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/06_DET_001_extract_data.png)
+
+*Figure 2. Reavealing account failure metadata.*
+
+
+
+
+
+
+![Failed logon & Successful Logon events](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/07_DET_001_targetuser_account_logon.png)
+
+*Figure 3. Failed logon & Successful Logon events.*
