@@ -1,7 +1,7 @@
 index=endpoint
 source="det-sysmon.csv"
-Id="3"
-Message="*powershell.exe*"
+Id="22"
+Message="*pwsh.exe*"
 | rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
 | rex field=Message "DestinationIp:\s+(?<DestinationIp>[^\r\n]+)"
 | rex field=Message "DestinationPort:\s+(?<DestinationPort>[^\r\n]+)"
