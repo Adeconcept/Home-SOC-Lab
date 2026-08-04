@@ -13,10 +13,10 @@ Identifies five or more failed Windows logons for the same account and host with
 
 | Field | Value |
 |---|---|
-| Status | Testing, change to Validated after evidence is added |
+| Status | Validated |
 | Version | 1.0 |
 | Severity | Low |
-| Confidence | Medium when the account and host are extracted correctly |
+| Confidence | Medium |
 | Data source | Windows Security |
 | Event ID | 4625 |
 | ATT&CK | T1110.001 Password Guessing |
