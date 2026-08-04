@@ -46,7 +46,7 @@ The threshold is a lab decision, not an industry standard.
 4. Count failures.
 5. Return groups with five or more failures.
 
-Query: [Query.spl](Query.spl)
+Query: [Query.spl](https://github.com/Adeconcept/Home-SOC-Lab/blob/2931dbc469812033d5a02ea2dd30769ee23e736b/03_Threat%20Detection%20lab/Detection%20Specifications/DET-001-Repeated-Failed-Logons/Query.spl)
 
 
 ---
