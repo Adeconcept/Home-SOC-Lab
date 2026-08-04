@@ -1,5 +1,5 @@
 index=endpoint
-source="det003-sysmon.csv"
+source="det-sysmon.csv"
 Id="3"
 Message="*powershell.exe*"
 | rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
