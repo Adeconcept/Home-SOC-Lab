@@ -1,0 +1,21 @@
+# Broad process timeline
+index=endpoint
+source="week8-val001-sysmon.csv"
+Id="1"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time host User ParentImage Image CommandLine
+| sort 0 _time
+
+# Adapt terms to the exact reviewed test
+index=endpoint
+source="week8-val001-sysmon.csv"
+Id="1"
+(
+    Message="*systeminfo*"
+    OR Message="*hostname*"
+    OR Message="*Get-ComputerInfo*"
+)
+| table _time host Message
