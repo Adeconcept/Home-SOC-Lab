@@ -2,7 +2,7 @@
 
 ## Current Version
 
-Identify PowerShell in Sysmon Event ID 3, or use an accurately named Event ID 22 DNS fallback.
+Isolates `pwsh.exe` execution blocks within Sysmon Event ID 22 logs to track script-driven DNS query name resolutions. 
 
 ## Tuning Options
 
@@ -15,6 +15,8 @@ Identify PowerShell in Sysmon Event ID 3, or use an accurately named Event ID 22
 | Increase priority when a file is created | Supports download investigation | File creation may be normal |
 | Reduce priority for signed approved scripts | Uses trust context | Signed software can still be abused |
 
+
 ## Decision
 
-No destination is excluded until its owner, purpose, and expected behaviour are documented.
+* **Immediate Action:** No destination domains are excluded from the detection block until their business owner, exact purpose, and expected baseline behaviors are completely documented.
+* **Architecture Note:** Due to laboratory telemetry restrictions surrounding Sysmon Event ID 3 (Network Connections), the detection logic was intentionally adapted to monitor Sysmon Event ID 22 (DNS Queries). This maintains equivalent visibility into outbound PowerShell communication vectors.
