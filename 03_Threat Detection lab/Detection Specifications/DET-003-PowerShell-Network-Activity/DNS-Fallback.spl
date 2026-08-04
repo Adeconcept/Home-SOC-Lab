@@ -1,7 +1,7 @@
 index=endpoint
 source="det-sysmon.csv"
 Id="22"
-Message="*powershell.exe*"
+Message="*pwsh.exe*"
 | rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
 | rex field=Message "QueryName:\s+(?<QueryName>[^\r\n]+)"
 | rex field=Message "User:\s+(?<User>[^\r\n]+)"
