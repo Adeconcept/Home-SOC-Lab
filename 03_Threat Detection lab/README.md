@@ -132,7 +132,7 @@ flowchart LR
 
 This methodology emphasizes reproducibility, transparency, and continuous improvement.
 
--Investigation finding
+- Investigation finding
 - Define detection hypothesis
 - Identify required telemetry
 - Build SPL query
@@ -162,6 +162,7 @@ Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Proce
 
 
 > Note: The current lab intentionally covers a limited subset of ATT&CK techniques. DET-003 includes network activity, but it is primarily mapped to PowerShell execution rather than Command and Control due to the absence of additional adversary context.
+
 
 ---
 
