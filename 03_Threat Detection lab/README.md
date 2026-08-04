@@ -167,7 +167,7 @@ Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Proce
 
 
 
-## Validation Strategy
+## Validation Strategy & Result
 
 Each detection is tested against four conditions:
 
@@ -178,7 +178,14 @@ Each detection is tested against four conditions:
 | Boundary | Confirm threshold behaviour |
 | Repeat | Confirm consistent results and evaluate duplicate alerting |
 
-Validation matrix: [Test-Evidence/Validation-Matrix.md](Test-Evidence/Validation-Matrix.md)
+
+
+
+| Detection | Tested                 | Result |
+| --------- | ---------------------- | ------ |
+| DET-001   | Failed logons          | Pass   |
+| DET-002   | Encoded PowerShell     | Pass   |
+| DET-003   | PowerShell DNS query | Pass   |
 
 
 
@@ -216,7 +223,10 @@ The project intentionally covers only two sub-techniques:
 - T1110.001, Password Guessing
 - T1059.001, PowerShell
 
-Coverage details: [MITRE-ATTACK/Coverage.md](MITRE-ATTACK/Coverage.md)
+Coverage details: [MITRE-ATTACK/Coverage.md](https://github.com/Adeconcept/Home-SOC-Lab/blob/6a331da616a6c88499f6a1eaa17d9832f92178b9/03_Threat%20Detection%20lab/MITRE%20Attack/Coverage.md)
+
+![MITRE ATTACK](Screenshots/00_MITRE_Mapping.png)
+
 
 
 ---
@@ -228,12 +238,10 @@ Coverage details: [MITRE-ATTACK/Coverage.md](MITRE-ATTACK/Coverage.md)
 - CSV batch uploads are not continuous monitoring.
 - Message fields require regex extraction.
 - Thresholds are lab values and require production baselining.
-- Event ID 3 may be unavailable depending on Sysmon configuration.
+- Event ID 3 was unavailable based on Sysmon configuration.
 - Encoded PowerShell can be legitimate.
 - Network activity does not prove command and control.
 - Splunk trial permissions may restrict scheduled alerts.
-
-Full limitations: [Limitations.md](Limitations.md)
 
 
 
@@ -242,27 +250,21 @@ Full limitations: [Limitations.md](Limitations.md)
 
 ## Project Report
 
-A concise management summary is available in [Week-7-Project-Report.md](Week-7-Project-Report.md).
+A concise management summary is available in [Project-Report.md](https://github.com/Adeconcept/Home-SOC-Lab/blob/6a331da616a6c88499f6a1eaa17d9832f92178b9/03_Threat%20Detection%20lab/Project-Report).
 
 
 ---
 
 
-## Repository Structure
+## Lessons Learned
 
-```text
-03-Threat-Detection-Lab/
-├── README.md
-├── Week-7-Project-Report.md
-├── Detection-Engineering-Process.md
-├── MITRE-ATTACK/
-├── Detections/
-├── Alerts/
-├── Test-Evidence/
-├── Troubleshooting.md
-├── Limitations.md
-└── Lessons-Learned.md
-```
+Key lessons from this project include:
+
+- Effective detections require reliable telemetry before SPL development.
+- ATT&CK mappings should reflect observed behaviour rather than assumptions.
+- Validation is essential to confirm that detections trigger as expected.
+- Tuning reduces unnecessary alerts and improves analyst efficiency.
+- Clear documentation supports repeatability and knowledge transfer.
 
 
 ---
