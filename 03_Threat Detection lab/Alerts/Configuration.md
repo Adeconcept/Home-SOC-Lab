@@ -39,7 +39,7 @@ The lab data is uploaded in batches, so scheduled alerts are more appropriate th
 
 
 
-![Alert Evidence](Screenshots/05_Alert_metada.png)
+![Alert Evidence](https://github.com/Adeconcept/Home-SOC-Lab/blob/e6169920a4e8dabc42b54a2b9617a7fd44fbb425/03_Threat%20Detection%20lab/Screenshots/05_Alert_metada.png)
 
 
 ---
@@ -65,7 +65,7 @@ When scheduled alerts are restricted:
 
 | Alert | Deployment status | Trigger evidence | Notes |
 |---|---|---|---|
-| DET-001 | Deployed | ![DET-001 Evidence](Screenshots/01_DET_001_Alert_Evidence.png) | Successfully validated brute-force threshold. Caught 6 brute-force login attempts within a 10-minute window on host SOC-WIN11. |
-| DET-002 | Deployed | ![DET-002 Evidence](Screenshots/02_DET_002_Alert_Evidence.png) | Tuned query to Version 3 to include parent process mapping. Prioritizes alerts if executed by Microsoft Office processes. |
-| DET-003 | Deployed | ![DET-003 Evidence](Screenshots/03_DET_003_Alert_Evidence.png) | Detects execution behavior of PowerShell initiating network lookups. Leverages Sysmon ID 22 to surface outbound domain resolutions spawned specifically by powershell.exe script instances. |
+| DET-001 | Deployed | ![DET-001 Evidence](https://github.com/Adeconcept/Home-SOC-Lab/blob/e6169920a4e8dabc42b54a2b9617a7fd44fbb425/03_Threat%20Detection%20lab/Screenshots/01_DET_001_Alert_Evidence.png) | Successfully validated brute-force threshold. Caught 6 brute-force login attempts within a 10-minute window on host SOC-WIN11. |
+| DET-002 | Deployed | ![DET-002 Evidence](https://github.com/Adeconcept/Home-SOC-Lab/blob/e6169920a4e8dabc42b54a2b9617a7fd44fbb425/03_Threat%20Detection%20lab/Screenshots/02_DET_002_Alert_Evidence.png) | Tuned query to Version 3 to include parent process mapping. Prioritizes alerts if executed by Microsoft Office processes. |
+| DET-003 | Deployed | ![DET-003 Evidence](https://github.com/Adeconcept/Home-SOC-Lab/blob/e6169920a4e8dabc42b54a2b9617a7fd44fbb425/03_Threat%20Detection%20lab/Screenshots/03_DET_003_Alert_Evidence.png) | Detects execution behavior of PowerShell initiating network lookups. Leverages Sysmon ID 22 to surface outbound domain resolutions spawned specifically by powershell.exe script instances. |
 
