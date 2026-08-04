@@ -130,19 +130,19 @@ flowchart LR
 
 ## Detection Engineering Methodology
 
-```text
-Observed behaviour
-    -> investigation finding
-    -> detection hypothesis
-    -> telemetry check
-    -> SPL logic
-    -> controlled validation
-    -> false-positive review
-    -> tuning
-    -> alert design
-    -> analyst response
-    -> maintenance
-```
+This methodology emphasizes reproducibility, transparency, and continuous improvement.
+
+-Investigation finding
+- Define detection hypothesis
+- Identify required telemetry
+- Build SPL query
+- Validate against known activity
+- Tune to reduce false positives
+- Map to MITRE ATT&CK
+- Configure alert logic
+- Document analyst response guidance
+- Maintenance
+
 
 Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Process.md)
 
