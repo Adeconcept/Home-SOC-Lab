@@ -119,14 +119,9 @@ DNS fallback: [DNS-Fallback.spl](https://github.com/Adeconcept/Home-SOC-Lab/blob
 ## Evidence
 
 
-![Initial 4625 reveal](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/08_DET_001_targetuser_extract.png)
+![DNS Query](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Screenshots/12_DET_003_DNS_Query.png)
 
-*Figure 1. Windows Event ID 4625 events associated with the controlled laboratory account during the documented investigation window.*
-
-
-![Initial 4625 reveal](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/08_DET_001_targetuser_extract.png)
-
-*Figure 2. Windows Event ID 4625 events associated with the controlled laboratory account during the documented investigation window.*
+*Figure 1. DNS Query connection by powershell*
 
 
 
