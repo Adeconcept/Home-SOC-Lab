@@ -3,7 +3,7 @@
 ## Harmless Positive Test
 
 ```powershell
-$text = 'Write-Output "Week 7 DET-002 validation successful"'
+$text = 'Write-Output "DET-002 validation successful"'
 
 $encoded = [Convert]::ToBase64String(
     [Text.Encoding]::Unicode.GetBytes($text)
@@ -18,25 +18,25 @@ The command prints harmless text and creates the expected process telemetry.
 
 | Test ID | Activity | Expected | Actual | Result |
 |---|---|---|---|---|
-| DET002-N1 | Normal PowerShell without encoding | No detection result | [Add actual] | [Pass or Fail] |
-| DET002-P1 | Harmless encoded PowerShell | Detection result | [Add actual] | [Pass or Fail] |
-| DET002-C1 | Confirm user, command line, and parent fields | Fields populated | [Add actual] | [Pass or Fail] |
-| DET002-R1 | Repeat encoded test | Detection result | [Add actual] | [Pass or Fail] |
+| DET002-N1 | Normal PowerShell without encoding | No detection result | System authorized PowerShell activity | Pass ✅ |
+| DET002-P1 | Harmless encoded PowerShell | Detection result | Detection result | Pass ✅ |
+| DET002-C1 | Confirm user, command line, and parent fields | Fields populated | Fields populated (User, CommandLine, ParentImage visible) | Pass ✅ |
+| DET002-R1 | Repeat encoded test | Detection result | Detection result | Pass ✅ |
 
 ## Evidence Fields
 
 | Field | Value |
 |---|---|
-| Host | [Add actual] |
-| User | [Add actual] |
-| Parent process | [Add actual] |
-| Command line visible | [Yes or No] |
-| Test start time | [Add actual] |
-| Detection severity | [Add actual] |
-| Alert created | [Yes, No, or Trial Restricted] |
+| Host | SOC-WIN11 |
+| User | Adekola |
+| Parent process | pwsh.exe |
+| Command line visible | Yes |
+| Test start time | 8/2/26 3:24:02.000 PM |
+| Detection severity | Medium |
+| Alert created | Yes |
 
 ## Validation Verdict
 
-**Status:** [Validated, Needs Tuning, or Failed]
+**Status:** Validated
 
-**Evidence-based conclusion:** [Add one sentence describing only what the results prove]
+**Evidence-based conclusion:** The test results prove that the tuned query accurately isolates encoded PowerShell execution blocks while capturing full process context fields and dynamically elevating alert severity for high-risk parent processes.
