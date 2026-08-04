@@ -4,21 +4,36 @@
 
 Identifies PowerShell process creation containing `-EncodedCommand` or `-enc` arguments and extracts fields needed for triage.
 
+
+---
+
+
+
 ## Status
 
 | Field | Value |
 |---|---|
-| Status | Testing, change to Validated after evidence is added |
+| Status | Validated |
 | Version | 3.0 |
-| Severity | Medium, High when launched by selected Office processes |
+| Severity | Medium |
 | Confidence | Medium |
 | Data source | Sysmon |
 | Event ID | 1 |
 | ATT&CK | T1059.001 PowerShell |
 
+
+
+---
+
+
+
 ## Detection Hypothesis
 
 PowerShell with encoded-command arguments may indicate command obfuscation and should be reviewed. The behaviour can also occur in legitimate administration and software deployment.
+
+
+---
+
 
 ## Detection Logic
 
@@ -28,7 +43,11 @@ PowerShell with encoded-command arguments may indicate command obfuscation and s
 4. Extract user, command line, image, and parent process.
 5. Prioritize unusual Office parent processes.
 
-Query: [Query.spl](Query.spl)
+Query: [Query.spl](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Detection%20Specifications/DET-002-Encoded-PowerShell/Query.spl)
+
+
+---
+
 
 ## Decision Record
 
@@ -41,6 +60,12 @@ Query: [Query.spl](Query.spl)
 | Raise priority for Office parent processes | Office spawning PowerShell is less expected | Helps analysts focus on unusual execution chains |
 | Keep base severity Medium | Encoding alone does not prove malicious intent | Maintains balanced classification |
 
+
+---
+
+
+
+
 ## Known False Positives
 
 - Administrative automation
@@ -51,6 +76,11 @@ Query: [Query.spl](Query.spl)
 - Approved testing
 - Base64 used for data handling rather than concealment
 
+
+---
+
+
+
 ## Limitations
 
 - Message-based matching depends on command-line visibility.
@@ -60,11 +90,10 @@ Query: [Query.spl](Query.spl)
 
 ## Evidence
 
-Add:
+![Query](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Screenshots/11_DET_002_encoded.png)
 
-- Broad PowerShell search
-- Encoded-command match
-- Extracted command line, user, and parent process
-- Harmless validation command
-- Nearby process, DNS, or network activity
-- Alert or saved-report configuration
+*Figure 1. SPL query for event ID 1 with Powershell econded command.*
+
+
+
+
