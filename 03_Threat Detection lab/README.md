@@ -156,9 +156,9 @@ Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Proce
 
 | Detection | Behaviour identified | Status | Detail |
 |---|---|---|---|
-| DET-001 | Repeated failed Windows logons for one account | T1110.001 Password Guessing | [Detection.md](https://github.com/Adeconcept/Home-SOC-Lab/blob/15593410e1d446ffbe82c433a6c57d11173b0956/03_Threat%20Detection%20lab/Detection%20Specifications/DET-001-Repeated-Failed-Logons/Detection.md) |
-| DET-002 | PowerShell launched with encoded-command arguments | T1059.001 PowerShell | [Detection.md](https://github.com/Adeconcept/Home-SOC-Lab/blob/4dae08746bae8341156ec945d84433a8d7a60b2c/03_Threat%20Detection%20lab/Detection%20Specifications/DET-002-Encoded-PowerShell/Detection.md) |
-| DET-003 | PowerShell associated with network or DNS activity | T1059.001 PowerShell | [Detection.md](https://github.com/Adeconcept/Home-SOC-Lab/blob/15593410e1d446ffbe82c433a6c57d11173b0956/03_Threat%20Detection%20lab/Detection%20Specifications/DET-003-PowerShell-Network-Activity/Detection.md) |
+| DET-001 | Repeated failed Windows logons for one account | T1110.001 Password Guessing | [DET 001](https://github.com/Adeconcept/Home-SOC-Lab/blob/15593410e1d446ffbe82c433a6c57d11173b0956/03_Threat%20Detection%20lab/Detection%20Specifications/DET-001-Repeated-Failed-Logons/Detection.md) |
+| DET-002 | PowerShell launched with encoded-command arguments | T1059.001 PowerShell | [DET 002](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Screenshots/11_DET_002_encoded.png) |
+| DET-003 | PowerShell associated with network or DNS activity | T1059.001 PowerShell | [DET 003](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Screenshots/12_DET_003_DNS_Query.png) |
 
 
 > Note: The current lab intentionally covers a limited subset of ATT&CK techniques. DET-003 includes network activity, but it is primarily mapped to PowerShell execution rather than Command and Control due to the absence of additional adversary context.
