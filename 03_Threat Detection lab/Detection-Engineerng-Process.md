@@ -4,6 +4,10 @@
 
 This process converts an investigation finding into detection logic that is testable, explainable, and useful to an analyst.
 
+
+---
+
+
 ## Lifecycle
 
 | Stage | Main question | Output |
@@ -19,6 +23,11 @@ This process converts an investigation finding into detection logic that is test
 | Deploy | What schedule, trigger, and suppression are appropriate? | Alert design |
 | Maintain | When should the rule be reviewed? | Review plan |
 
+
+---
+
+
+
 ## Detection, Alert, and Investigation
 
 | Term | Meaning |
@@ -28,6 +37,11 @@ This process converts an investigation finding into detection logic that is test
 | Investigation | The analyst review that determines context, legitimacy, and required action |
 
 A detection match is not proof of compromise.
+
+
+---
+
+
 
 ## Specification Checklist
 
@@ -49,6 +63,12 @@ Every detection in this project records:
 - Limitations
 - Future improvements
 
+
+---
+
+
+
+
 ## Quality Principles
 
 1. Use the narrowest useful behaviour, not the broadest possible search.
@@ -59,3 +79,5 @@ Every detection in this project records:
 6. Keep ATT&CK mappings limited to behaviour actually evidenced.
 7. Record failed tests and telemetry gaps.
 8. Revalidate after meaningful query, data, or environment changes.
+
+
