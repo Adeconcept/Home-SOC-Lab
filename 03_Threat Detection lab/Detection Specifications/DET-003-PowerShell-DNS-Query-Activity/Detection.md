@@ -1,24 +1,40 @@
-# DET-003: PowerShell Network Activity
+# DET-003: PowerShell DNS Query Activity
 
 ## Summary
 
-Identifies PowerShell associated with Sysmon network connection telemetry. When Event ID 3 is unavailable, the fallback detection must be renamed **PowerShell DNS Query Activity** and use Event ID 22.
+Identifies anomalous process behavior where `powershell.exe` initiates outbound network activity. Following a recorded telemetry gap for Sysmon Event ID 3 (Network Connections), this detection was actively modified to leverage Sysmon Event ID 22 to track script-driven DNS query resolutions.
+
+
+---
+
 
 ## Status
 
 | Field | Value |
 |---|---|
-| Status | Testing or Needs Telemetry |
+| Status | Validated |
 | Version | 1.0 |
 | Severity | Medium |
-| Confidence | Medium with Event ID 3, lower with DNS-only evidence |
+| Confidence | Medium (Optimized via Sysmon ID 22 field extraction) |
 | Data source | Sysmon |
-| Event IDs | 1 and 3, or 22 for DNS fallback |
-| ATT&CK | T1059.001 PowerShell |
+| Event IDs | 22 (DNS Fallback implemented due to ID 3 telemetry gap) |
+| ATT&CK | T1059.001 PowerShell (Execution), T1071.004 DNS (Command and Control) |
+
+
+
+
+---
+
+
 
 ## Detection Hypothesis
 
-PowerShell creating an outbound connection shortly after execution may require review, especially when the destination, command, or parent process is unusual.
+PowerShell executing outbound domain name resolutions shortly after process creation indicates script-driven external communication. This requires immediate analyst triage to separate routine system administration from active Command and Control (C2) beaconing or data exfiltration.
+
+
+---
+
+
 
 ## Telemetry Decision
 
@@ -26,53 +42,99 @@ Run this first:
 
 ```spl
 index=endpoint
-sourcetype="csv:sysmon"
+sourcetype="det:sysmon"
 Id="3"
 | stats count
 ```
 
-- If Event ID 3 is available, use the network query.
-- If Event ID 3 is unavailable but Event ID 22 is present, use the DNS query and rename the detection.
-- If neither is available, record a telemetry gap and do not claim validation.
+Following the architectural playbook rules, the deployment path was adapted to use the **DNS Query Activity** model.
 
-Primary query: [Query.spl](Query.spl)
+### Implemented Production Query (Sysmon Event ID 22)
 
-DNS fallback: [DNS-Fallback.spl](DNS-Fallback.spl)
+
+```spl
+index=endpoint
+source="det-sysmon.csv"
+Id="22"
+Message="*powershell.exe*"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "QueryName:\s+(?<QueryName>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time host User Image QueryName
+```
+
+Primary query: [Query.spl](https://github.com/Adeconcept/Home-SOC-Lab/blob/b8d0e730a0476895682854e2bd772ec48360505c/03_Threat%20Detection%20lab/Detection%20Specifications/DET-003-PowerShell-DNS-Query-Activity/Query.spl)
+
+DNS fallback: [DNS-Fallback.spl](https://github.com/Adeconcept/Home-SOC-Lab/blob/b8d0e730a0476895682854e2bd772ec48360505c/03_Threat%20Detection%20lab/Detection%20Specifications/DET-003-PowerShell-DNS-Query-Activity/DNS-Fallback.spl)
+
+
+
+---
+
+
+
 
 ## Decision Record
 
 | Decision | Why | Value |
 |---|---|---|
-| Require Event ID 3 for connection claims | Network connections need network telemetry | Prevents unsupported conclusions |
-| Use Event ID 22 only as a named DNS fallback | DNS queries are not proof of an outbound connection | Preserves technical accuracy |
-| Keep severity Medium | PowerShell frequently performs legitimate web activity | Avoids over-prioritizing common administration |
-| Map primarily to T1059.001 | Network activity alone does not prove command and control | Keeps ATT&CK mapping defensible |
-| Extract destination context | Destination helps determine expected or unusual activity | Improves analyst triage |
+| Pivot to Event ID 22 DNS Logging | Event ID 3 network connection logs were completely unavailable | Maintains endpoint script visibility despite host telemetry gaps |
+| Rename to DNS Query Activity | DNS queries show intent to connect but do not guarantee a completed TCP/UDP handshake | Preserves technical accuracy in analyst reporting |
+| Keep severity Medium | PowerShell frequently performs legitimate external web activity and API lookups | Avoids over-prioritizing common administrative noise |
+| Map primarily to T1059.001 & T1071.004 | The script name drives the detection, while the DNS payload represents potential C2 | Keeps the enterprise ATT&CK framework defensible |
+| Extract QueryName Destination Context | The requested domain string is the key indicator needed to evaluate reputation | Improves analyst triage speed during live incidents |
+
+
+
+---
+
+
 
 ## Known False Positives
 
-- Administrative scripts downloading approved files
-- Software installation and update scripts
-- Cloud-management modules
-- API automation
-- Security testing
-- Approved deployment activity
+- Administrative scripts downloading approved internal dependencies
+- Native Windows/Microsoft cloud-management modules and telemetry updates
+- IT service desk automation tools and cloud API lookups
+- Third-party software update scripts executing via scheduled tasks
+
+
+
+---
+
+
 
 ## Limitations
 
-- Event ID 3 may not be enabled.
-- DNS evidence does not confirm a successful connection.
-- A connection to an external destination does not prove malicious intent.
-- Uploaded CSV data does not provide real-time process correlation.
-- Destination reputation is not included.
+- Event ID 3 network connection stream remains completely disabled on endpoints.
+- DNS query evidence does not mathematically confirm a successful data transfer.
+- Static CSV log data prevents real-time, interactive process tree tracking.
+- External destination domain reputation scoring is not natively embedded inside the table view.
+
+
+
+---
+
+
 
 ## Evidence
 
-Add:
 
-- Event ID 3 availability result
-- Safe PowerShell web request
-- Matching Event ID 3 or 22
-- Extracted destination
-- Nearby process activity
-- Alert or saved-report configuration
+![Initial 4625 reveal](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/08_DET_001_targetuser_extract.png)
+
+*Figure 1. Windows Event ID 4625 events associated with the controlled laboratory account during the documented investigation window.*
+
+
+![Initial 4625 reveal](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/08_DET_001_targetuser_extract.png)
+
+*Figure 2. Windows Event ID 4625 events associated with the controlled laboratory account during the documented investigation window.*
+
+
+
+
+---
+
+
+### Evidence Fields
+* **Host:** `SOC-WIN11`
+* **Extracted Destination Domain:** `example.com`
+* **Alert Status:** Active / Saved Search Configured
