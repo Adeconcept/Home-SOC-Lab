@@ -197,7 +197,7 @@ Each detection is tested against four conditions:
 
 The data is uploaded in batches, so scheduled searches are more appropriate than real-time alerts. Where Splunk trial permissions prevent alert deployment, the detection is saved as a report with the intended schedule and trigger documented.
 
-Alert configuration: [Alerts/Alert-Configuration.md](Alerts/Alert-Configuration.md)
+Alert configuration: [Alerts/Alert-Configuration.md](https://github.com/Adeconcept/Home-SOC-Lab/blob/b8e297c59315c94e5d5e912410774213d0c49bd4/03_Threat%20Detection%20lab/Alerts/Configuration.md)
 
 
 ---
@@ -208,7 +208,7 @@ Alert configuration: [Alerts/Alert-Configuration.md](Alerts/Alert-Configuration.
 
 The detections create investigation leads. They do not independently confirm malicious activity and they do not prevent attacks.
 
-Response playbook: [Alerts/Analyst-Response-Playbook.md](Alerts/Analyst-Response-Playbook.md)
+Response playbook: [Alerts/Analyst-Response-Playbook.md]([Alerts/Analyst-Response-Playbook.md](https://github.com/Adeconcept/Home-SOC-Lab/blob/b8e297c59315c94e5d5e912410774213d0c49bd4/03_Threat%20Detection%20lab/Alerts/Response-Playbook.md))
 
 
 
