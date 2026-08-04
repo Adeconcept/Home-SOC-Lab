@@ -156,12 +156,12 @@ Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Proce
 
 | Detection | Behaviour identified | Status | Detail |
 |---|---|---|---|
-| DET-001 | Repeated failed Windows logons for one account | T1110.001 Password Guessing | [Detection.md](Detection-Specifications/DET-001-Repeated-Failed-Logons/Detection.md) |
-| DET-002 | PowerShell launched with encoded-command arguments | T1059.001 PowerShell | [Detection.md](Detection-Specifications/DET-002-Encoded-PowerShell/Detection.md) |
-| DET-003 | PowerShell associated with network or DNS activity | T1059.001 PowerShell | [Detection.md](Detection-Specifications/DET-003-PowerShell-Network-Activity/Detection.md) |
+| DET-001 | Repeated failed Windows logons for one account | T1110.001 Password Guessing | [Detection.md](Detection20%Specifications/DET-001-Repeated-Failed-Logons/Detection.md) |
+| DET-002 | PowerShell launched with encoded-command arguments | T1059.001 PowerShell | [Detection.md](Detection20%Specifications/DET-002-Encoded-PowerShell/Detection.md) |
+| DET-003 | PowerShell associated with network or DNS activity | T1059.001 PowerShell | [Detection.md](Detection20%Specifications/DET-003-PowerShell-Network-Activity/Detection.md) |
 
 Change a status to `Validated` only after the matching positive, negative, boundary, and repeat tests have been recorded.
-
+03_Threat Detection lab/Detection Specifications/DET-003-PowerShell-Network-Activity/Detection.md
 
 > Note: The current lab intentionally covers a limited subset of ATT&CK techniques. DET-003 includes network activity, but it is primarily mapped to PowerShell execution rather than Command and Control due to the absence of additional adversary context.
 
