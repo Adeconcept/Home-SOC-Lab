@@ -4,6 +4,11 @@
 
 The lab data is uploaded in batches, so scheduled alerts are more appropriate than real-time alerts. A real-time configuration would imply continuous telemetry that the lab does not provide.
 
+
+---
+
+
+
 ## Alert Matrix
 
 | Detection | Schedule | Search window | Trigger | Suggested suppression |
@@ -11,6 +16,10 @@ The lab data is uploaded in batches, so scheduled alerts are more appropriate th
 | DET-001 | Every 10 minutes | Last 15 minutes | Results greater than 0 | Same host and user for 30 minutes |
 | DET-002 | Every 5 minutes | Last 10 minutes | Results greater than 0 | Same host, user, and command line for 30 minutes |
 | DET-003 | Every 5 minutes | Last 10 minutes | Results greater than 0 | Review after observing duplicate behaviour |
+
+
+---
+
 
 ## Required Alert Metadata
 
@@ -27,6 +36,11 @@ The lab data is uploaded in batches, so scheduled alerts are more appropriate th
 - Version
 - Last validation date
 
+
+---
+
+
+
 ## Splunk Trial Fallback
 
 When scheduled alerts are restricted:
@@ -36,6 +50,11 @@ When scheduled alerts are restricted:
 3. Capture the saved-report configuration.
 4. Mark the alert as `Designed, not deployed due to trial limitation`.
 5. Do not claim that a triggered alert was created.
+
+
+---
+
+
 
 ## Evidence Table
 
