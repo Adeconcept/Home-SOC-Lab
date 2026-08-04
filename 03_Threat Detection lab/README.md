@@ -16,6 +16,24 @@ The project demonstrates how I move from an investigation finding to a detection
 
 
 
+![Initial 4625 reveal](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/08_DET_001_targetuser_extract.png)
+
+*Figure 1. DET 001.*
+
+
+![Query](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Screenshots/11_DET_002_encoded.png)
+
+*Figure 2. DET 002.*
+
+
+
+![DNS Query](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Screenshots/12_DET_003_DNS_Query.png)
+
+*Figure 3. DET 003*
+
+
+
+
 ---
 
 
@@ -157,8 +175,8 @@ Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Proce
 | Detection | Behaviour identified | Status | Detail |
 |---|---|---|---|
 | DET-001 | Repeated failed Windows logons for one account | T1110.001 Password Guessing | [DET 001](https://github.com/Adeconcept/Home-SOC-Lab/blob/15593410e1d446ffbe82c433a6c57d11173b0956/03_Threat%20Detection%20lab/Detection%20Specifications/DET-001-Repeated-Failed-Logons/Detection.md) |
-| DET-002 | PowerShell launched with encoded-command arguments | T1059.001 PowerShell | [DET 002](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Screenshots/11_DET_002_encoded.png) |
-| DET-003 | PowerShell associated with network or DNS activity | T1059.001 PowerShell | [DET 003](https://github.com/Adeconcept/Home-SOC-Lab/blob/76b5bd8a49933fcc9f316349f91e9df478d75eba/03_Threat%20Detection%20lab/Screenshots/12_DET_003_DNS_Query.png) |
+| DET-002 | PowerShell launched with encoded-command arguments | T1059.001 PowerShell | [DET 002](https://github.com/Adeconcept/Home-SOC-Lab/blob/a857c821799d0b8ef5054d585e202c75adbf699b/03_Threat%20Detection%20lab/Detection%20Specifications/DET-002-Encoded-PowerShell/Detection.md) |
+| DET-003 | PowerShell associated with network or DNS activity | T1059.001 PowerShell | [DET 003](https://github.com/Adeconcept/Home-SOC-Lab/blob/a857c821799d0b8ef5054d585e202c75adbf699b/03_Threat%20Detection%20lab/Detection%20Specifications/DET-003-PowerShell-DNS-Query-Activity/Detection.md) |
 
 
 > Note: The current lab intentionally covers a limited subset of ATT&CK techniques. DET-003 includes network activity, but it is primarily mapped to PowerShell execution rather than Command and Control due to the absence of additional adversary context.
