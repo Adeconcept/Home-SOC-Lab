@@ -111,12 +111,17 @@ After a match, review Event IDs 4624 and 4625 for the same account to determine 
 
 ## Evidence
 
-- Base 4625 events
-- Extracted `TargetUser`
-- Four-failure no-trigger result
-- Five-failure trigger result
-- Authentication timeline
-- Alert or saved-report configuration
+### Core Telemetry Validation
+* **Base 4625 Events:** Successfully ingested and parsed. Isolated a dense block of Windows Security Log Event ID 4625 (An Account Failed to Log On) instances tied specifically to the target asset.
+* **Extracted `TargetUser`:** The regular expression successfully processed the raw message block to isolate the `labtest` account into a dedicated, filterable field.
+
+### Boundary & Threshold Testing
+* **Four-Failure No-Trigger Result (DET001-B1):** Confirmed query threshold stability. Setting the filter constraint strictly below the trigger mark returned zero results, ensuring routine user typos do not trigger high-priority alerts.
+* **Five-Failure Trigger Result (DET001-P1):** Passed. The query successfully broke through the threshold block, returning a consolidated log timeline showcasing **6 actual brute-force attempts** targeted at the host.
+
+### Analyst Context & Search State
+* **Authentication Timeline:** Organized chronologically via `| sort 0 _time`. The search automatically groups brute-force activity into clean 10-minute buckets using the `| bin _time span=10m` command, giving analysts a distinct window of attack velocity.
+* **Alert Configuration:** Saved as a scheduled Splunk alert designed to run every 10 minutes (`*/10 * * * *`). Configured with result throttling to suppress duplicate alerts containing the identical `host` and `TargetUser` fields for 30 minutes, preventing alert fatigue in the SOC.
 
 
 ![Initial 4625 reveal](https://github.com/Adeconcept/Home-SOC-Lab/blob/2fa6c1ca7d3b402ad2754856e0186fed9cce1f93/03_Threat%20Detection%20lab/Screenshots/08_DET_001_targetuser_extract.png)
