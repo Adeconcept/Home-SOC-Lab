@@ -163,6 +163,8 @@ Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Proce
 Change a status to `Validated` only after the matching positive, negative, boundary, and repeat tests have been recorded.
 
 
+> Note: The current lab intentionally covers a limited subset of ATT&CK techniques. DET-003 includes network activity, but it is primarily mapped to PowerShell execution rather than Command and Control due to the absence of additional adversary context.
+
 ---
 
 
