@@ -14,20 +14,21 @@ This project converts three Windows investigation findings into reusable Splunk 
 
 The project demonstrates how I move from an investigation finding to a detection hypothesis, SPL logic, controlled validation, tuning, alert design, analyst response, and documented limitations.
 
-> Evidence note: fields marked `[Add actual result]` must be completed with the real Splunk output, timestamps, and screenshots from the lab. No test result should be claimed without supporting evidence.
 
 
 ---
 
+
 ## Objective
 
-The objective of this lab was to:
+Build and document a small threat detection lab that:
 
-- Develop reusable Splunk detections from Windows telemetry
-- Map detections to the MITRE ATT&CK framework
-- Validate detections using controlled test activities
-- Document false positives and tuning opportunities
-- Produce investigation-ready documentation suitable for a SOC environment
+1. Detects defined suspicious behaviours in Windows telemetry.
+2. Proves detection behaviour with controlled tests.
+3. Records false positives, limitations, and tuning decisions.
+4. Map detections to the MITRE ATT&CK framework
+5. Produces actionable investigation leads rather than claiming malicious intent.
+
 
 
 ---
@@ -51,28 +52,63 @@ The objective of this lab was to:
 | Use Event ID 22 as a named DNS fallback | DNS evidence is not the same as an outbound connection | Maintains accurate detection language |
 | Map DET-003 primarily to T1059.001 | Network activity alone does not prove command and control | Keeps ATT&CK coverage defensible |
 
-## Objective
 
-Build and document a small threat detection lab that:
+---
 
-1. Detects defined suspicious behaviours in Windows telemetry.
-2. Proves detection behaviour with controlled tests.
-3. Records false positives, limitations, and tuning decisions.
-4. Produces actionable investigation leads rather than claiming malicious intent.
+
+
+## Data sources
+
+| Source | Purpose |
+|---|---|
+| Windows Security Log | Authentication events |
+| Sysmon Event ID 1 | Process creation |
+| Sysmon Event ID 3 | Network connections |
+| Sysmon Event ID 22 | DNS Query |
+| Powershell | Script execution |
+| Plunk Index | Search and correlation |
+
+
+
+
+---
+
 
 ## Lab Environment
 
-| Component | Purpose |
-|---|---|
-| Windows 11 ARM | Endpoint used for controlled activity |
-| Sysmon | Process, DNS, and network telemetry |
-| Windows Security logs | Authentication telemetry |
-| Splunk | Search, detection logic, reports, and alerts |
-| PowerShell | Safe validation activity |
-| MITRE ATT&CK Navigator | Detection coverage visualization |
-| GitHub | Versioned portfolio documentation |
+### Host Machine: Apple MacBook M1
+#### Virtualization: UTM
+### Endpoint used for controlled activity: Windows 11 ARM
+### Search, detection logic, reports, and alerts: Cloud hosted Splunk
+### Process, DNS, and network telemetry: Sysmon
+### Authentication telemetry: Windows Security Logs
+### Safe validation activity: Powershell
+### Detection coverage visualization: ITRE ATT&CK Navigator
+### Versioned portfolio documentation: GitHub
+
+
+---
+
+## Skills Demonstrated
+
+- Detection hypothesis development
+- Windows Security and Sysmon analysis
+- SPL field extraction, aggregation, and correlation
+- Positive, negative, boundary, and repeat validation
+- False-positive analysis and tuning
+- MITRE ATT&CK mapping
+- Alert design and analyst triage
+- Evidence-based technical documentation
+
+
+---
+
+
 
 ## Architecture
+
+The environment consists of a Windows endpoint generating Sysmon and Windows Security events that are indexed into Splunk. SPL searches identify predefined behaviours, which are validated and mapped to relevant MITRE ATT&CK techniques before being configured as detections.
+
 
 ```mermaid
 flowchart LR
@@ -86,6 +122,11 @@ flowchart LR
     G --> H[Analyst Triage]
     H --> I[Tuning and Documentation]
 ```
+
+
+---
+
+
 
 ## Detection Engineering Methodology
 
@@ -105,6 +146,12 @@ Observed behaviour
 
 Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Process.md)
 
+
+
+---
+
+
+
 ## Detection Coverage
 
 | Detection | Behaviour identified | Status | Detail |
@@ -114,6 +161,11 @@ Full methodology: [Detection-Engineering-Process.md](Detection-Engineering-Proce
 | DET-003 | PowerShell associated with network or DNS activity | Testing or telemetry-limited | [Detection.md](Detections/DET-003-PowerShell-Network-Activity/Detection.md) |
 
 Change a status to `Validated` only after the matching positive, negative, boundary, and repeat tests have been recorded.
+
+
+---
+
+
 
 ## Validation Strategy
 
@@ -128,17 +180,34 @@ Each detection is tested against four conditions:
 
 Validation matrix: [Test-Evidence/Validation-Matrix.md](Test-Evidence/Validation-Matrix.md)
 
+
+
+---
+
+
+
 ## Alert Design
 
 The data is uploaded in batches, so scheduled searches are more appropriate than real-time alerts. Where Splunk trial permissions prevent alert deployment, the detection is saved as a report with the intended schedule and trigger documented.
 
 Alert configuration: [Alerts/Alert-Configuration.md](Alerts/Alert-Configuration.md)
 
+
+---
+
+
+
 ## Analyst Response
 
 The detections create investigation leads. They do not independently confirm malicious activity and they do not prevent attacks.
 
 Response playbook: [Alerts/Analyst-Response-Playbook.md](Alerts/Analyst-Response-Playbook.md)
+
+
+
+---
+
+
 
 ## MITRE ATT&CK Coverage
 
@@ -148,6 +217,11 @@ The project intentionally covers only two sub-techniques:
 - T1059.001, PowerShell
 
 Coverage details: [MITRE-ATTACK/Coverage.md](MITRE-ATTACK/Coverage.md)
+
+
+---
+
+
 
 ## Main Limitations
 
@@ -161,20 +235,18 @@ Coverage details: [MITRE-ATTACK/Coverage.md](MITRE-ATTACK/Coverage.md)
 
 Full limitations: [Limitations.md](Limitations.md)
 
-## Skills Demonstrated
 
-- Detection hypothesis development
-- Windows Security and Sysmon analysis
-- SPL field extraction, aggregation, and correlation
-- Positive, negative, boundary, and repeat validation
-- False-positive analysis and tuning
-- MITRE ATT&CK mapping
-- Alert design and analyst triage
-- Evidence-based technical documentation
+
+---
+
 
 ## Project Report
 
 A concise management summary is available in [Week-7-Project-Report.md](Week-7-Project-Report.md).
+
+
+---
+
 
 ## Repository Structure
 
@@ -191,6 +263,11 @@ A concise management summary is available in [Week-7-Project-Report.md](Week-7-P
 ├── Limitations.md
 └── Lessons-Learned.md
 ```
+
+
+---
+
+
 
 ## References
 
