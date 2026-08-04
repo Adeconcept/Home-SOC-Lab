@@ -76,15 +76,15 @@ Build and document a small threat detection lab that:
 
 ## Lab Environment
 
-### Host Machine: Apple MacBook M1
+#### Host Machine: Apple MacBook M1
 #### Virtualization: UTM
-### Endpoint used for controlled activity: Windows 11 ARM
-### Search, detection logic, reports, and alerts: Cloud hosted Splunk
-### Process, DNS, and network telemetry: Sysmon
-### Authentication telemetry: Windows Security Logs
-### Safe validation activity: Powershell
-### Detection coverage visualization: ITRE ATT&CK Navigator
-### Versioned portfolio documentation: GitHub
+#### Endpoint used for controlled activity: Windows 11 ARM
+#### Search, detection logic, reports, and alerts: Cloud hosted Splunk
+#### Process, DNS, and network telemetry: Sysmon
+#### Authentication telemetry: Windows Security Logs
+#### Safe validation activity: Powershell
+#### Detection coverage visualization: ITRE ATT&CK Navigator
+#### Versioned portfolio documentation: GitHub
 
 
 ---
