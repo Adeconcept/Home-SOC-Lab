@@ -8,7 +8,7 @@ This project converts three Windows investigation findings into reusable Splunk 
 |---|---|---|---|---|
 | DET-001 | Multiple failed logons for one account | Windows Security, Event ID 4625 | T1110.001 Password Guessing | Low |
 | DET-002 | Encoded PowerShell execution | Sysmon, Event ID 1 | T1059.001 PowerShell | Medium |
-| DET-003 | PowerShell network activity | Sysmon, Event IDs 1 and 3 | T1059.001 PowerShell | Medium |
+| DET-003 | PowerShell DNS Query activity | Sysmon, Event IDs 22 | T1059.001 PowerShell | Medium |
 
 The project demonstrates how I move from an investigation finding to a detection hypothesis, SPL logic, controlled validation, tuning, alert design, analyst response, and documented limitations.
 
