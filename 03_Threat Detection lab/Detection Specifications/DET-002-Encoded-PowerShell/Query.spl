@@ -1,5 +1,5 @@
 index=endpoint
-sourcetype="csv:sysmon"
+sourcetype=det:sysmon"
 Id="1"
 Message="*powershell*"
 (Message="*-EncodedCommand*" OR Message="*-enc *")
