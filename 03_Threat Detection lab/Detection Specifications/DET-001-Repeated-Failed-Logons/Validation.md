@@ -46,7 +46,7 @@ Use only the dedicated `labtest` account. Do not test the primary user account a
 
 ```spl
 index=endpoint
-source="wdet-security.csv"
+source="det-security.csv"
 Message="*labtest*"
 (Id="4624" OR Id="4625")
 | sort 0 _time
