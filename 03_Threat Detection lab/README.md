@@ -4,6 +4,8 @@
 
 This project converts three Windows investigation findings into reusable Splunk detection logic:
 
+
+
 | ID | Detection | Telemetry | ATT&CK | Initial priority |
 |---|---|---|---|---|
 | DET-001 | Multiple failed logons for one account | Windows Security, Event ID 4625 | T1110.001 Password Guessing | Low |
@@ -13,6 +15,23 @@ This project converts three Windows investigation findings into reusable Splunk 
 The project demonstrates how I move from an investigation finding to a detection hypothesis, SPL logic, controlled validation, tuning, alert design, analyst response, and documented limitations.
 
 > Evidence note: fields marked `[Add actual result]` must be completed with the real Splunk output, timestamps, and screenshots from the lab. No test result should be claimed without supporting evidence.
+
+
+---
+
+## Objective
+
+The objective of this lab was to:
+
+- Develop reusable Splunk detections from Windows telemetry
+- Map detections to the MITRE ATT&CK framework
+- Validate detections using controlled test activities
+- Document false positives and tuning opportunities
+- Produce investigation-ready documentation suitable for a SOC environment
+
+
+---
+
 
 ## Recruiter Scan
 
