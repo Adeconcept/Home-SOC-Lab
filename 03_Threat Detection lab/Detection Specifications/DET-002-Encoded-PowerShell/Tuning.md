@@ -8,9 +8,20 @@
 | 2.0 | Require `-EncodedCommand` or `-enc` | Removes most normal interactive PowerShell |
 | 3.0 | Extract parent context and assign dynamic severity | Improves analyst prioritization |
 
+
+---
+
+
+
 ## Current Tuning Decision
 
 Office parent processes such as Word, Excel, or Outlook receive higher priority. Other matching activity remains Medium severity.
+
+
+---
+
+
+
 
 ## Future Tuning Options
 
@@ -21,6 +32,11 @@ Office parent processes such as Word, Excel, or Outlook receive higher priority.
 - Higher severity for execution from temporary directories
 - Higher severity when network activity follows
 - Higher severity when files are created
+
+
+---
+
+
 
 ## Guardrail
 
