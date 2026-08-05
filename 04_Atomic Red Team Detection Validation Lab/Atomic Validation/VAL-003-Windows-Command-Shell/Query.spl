@@ -1,0 +1,24 @@
+# Combined process and file timeline
+index=endpoint
+source="val003-sysmon.csv"
+(Id="1" OR Id="11")
+| sort 0 _time
+| table _time Id Message
+
+# Command-shell process extraction
+index=endpoint
+source="val003-sysmon.csv"
+Id="1"
+Message="*cmd.exe*"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time host User ParentImage Image CommandLine
+
+# File creation extraction, when Event ID 11 is available
+index=endpoint
+source="val003-sysmon.csv"
+Id="11"
+| rex field=Message "TargetFilename:\s+(?<TargetFilename>[^\r\n]+)"
+| table _time host TargetFilename Message
