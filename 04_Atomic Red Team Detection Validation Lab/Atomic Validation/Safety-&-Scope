@@ -7,6 +7,10 @@
 - Hypervisor: UTM
 - Environment: Personal isolated lab
 
+
+---
+
+
 ## Authorized Techniques
 
 | Validation | Technique | Approved behaviour |
@@ -15,6 +19,10 @@
 | VAL-002 | T1016 | Read local network configuration |
 | VAL-003 | T1059.003 | Create or display harmless text through command shell |
 | VAL-004 | T1027 | Run reviewed PowerShell that prints harmless text |
+
+
+---
+
 
 ## Prohibited Activity
 
@@ -33,6 +41,10 @@
 - Unreviewed tests
 - Execution outside the lab VM
 
+
+---
+
+
 ## Safety Controls
 
 | Control | Reason |
@@ -45,9 +57,16 @@
 | Cleanup reviewed first | Confirms reversibility |
 | Cleanup verification | Proves endpoint recovery |
 
+
+---
+
+
 ## Stop Conditions
 
 Stop when the system identity is wrong, the test definition differs, an unknown download appears, a security exclusion is requested, or cleanup cannot be explained.
+
+---
+
 
 ## Recovery Plan
 
