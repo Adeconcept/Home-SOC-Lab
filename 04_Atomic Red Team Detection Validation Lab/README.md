@@ -22,8 +22,6 @@ Atomic test
 
 No malware, credential access, persistence, security-control disabling, or destructive activity is included.
 
-> Evidence note: fields marked `[Add actual result]` must be completed with the real test number, GUID, timestamps, Splunk output, cleanup result, and screenshots.
-
 
 ---
 
@@ -103,7 +101,7 @@ flowchart LR
 
 | Layer | Question |
 |---|---|
-| Generation | Did the selected test execute? |
+| Generation | Did  selected test execute? |
 | Collection | Did Windows or Sysmon record it? |
 | Ingestion | Did the event reach Splunk? |
 | Parsing | Were important fields extractable? |
