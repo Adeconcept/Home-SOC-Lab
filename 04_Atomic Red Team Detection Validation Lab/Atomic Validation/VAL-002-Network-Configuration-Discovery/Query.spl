@@ -1,0 +1,36 @@
+# Extract matching discovery processes
+index=endpoint
+source="val002-sysmon.csv"
+Id="1"
+(
+    Message="*ipconfig*"
+    OR Message="*route.exe*"
+    OR Message="*arp.exe*"
+    OR Message="*netsh.exe*"
+    OR Message="*Get-Net*"
+)
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time host User ParentImage Image CommandLine
+| sort 0 _time
+
+# Detection candidate
+index=endpoint
+source="val002-sysmon.csv"
+Id="1"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| eval discovery_command=case(
+    match(lower(CommandLine),"ipconfig"),"ipconfig",
+    match(lower(CommandLine),"route"),"route",
+    match(lower(CommandLine),"arp"),"arp",
+    match(lower(CommandLine),"netsh"),"netsh",
+    match(lower(CommandLine),"get-net"),"PowerShell network discovery",
+    true(),"other"
+)
+| where discovery_command!="other"
+| bin _time span=5m
+| stats count AS command_count dc(discovery_command) AS distinct_commands values(discovery_command) AS commands by _time host User
+| where distinct_commands >= 2
