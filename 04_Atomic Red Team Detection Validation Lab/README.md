@@ -152,6 +152,17 @@ Test matrix: [Atomic-Validation/Test-Matrix.md](https://github.com/Adeconcept/Ho
 
 ## Validation Reports
 
+
+| Validation name | Evidence | Link |
+|---|---|---|
+| VAL-001: T1082 System Information Discovery | ![Extracting process details](https://github.com/Adeconcept/Home-SOC-Lab/blob/af04dbfb616f3c757f180d9821938387be860a4e/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/01_Val_001_extract%20data.png)
+
+*Extracting process details.* | [VAL-001 System Information Discovery](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-001-System-Information-Discovery/Validation-Report.md) |
+| VAL-002 | T1016 Network Configuration Discovery | Can several discovery commands be grouped into one sequence? | Behavioural detection design |
+| VAL-003 | T1059.003 Windows Command Shell | Can harmless shell and file activity be reconstructed? | Context-based detection judgment |
+| VAL-004 | T1027 Obfuscated Files or Information | Does DET-002 detect another obfuscation method? | Detection testing and improvement |
+
+
 - [VAL-001 System Information Discovery](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-001-System-Information-Discovery/Validation-Report.md)
 
 ![Extracting process details](https://github.com/Adeconcept/Home-SOC-Lab/blob/af04dbfb616f3c757f180d9821938387be860a4e/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/01_Val_001_extract%20data.png)
