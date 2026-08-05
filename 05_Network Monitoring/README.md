@@ -263,3 +263,10 @@ The most useful approach was to reconstruct the communication sequence rather th
 ## Evidence
 
 The original PCAP should be handled carefully because packet captures can contain network and privacy-sensitive information.
+
+
+![IO Graph](https://github.com/Adeconcept/Home-SOC-Lab/blob/25a4000e0648b75c9e837288b1d2acfcf87b8504/05_Network%20Monitoring/Screenshots/github_io_graph.png)
+
+
+
+![TCP Handshake](https://github.com/Adeconcept/Home-SOC-Lab/blob/25a4000e0648b75c9e837288b1d2acfcf87b8504/05_Network%20Monitoring/Screenshots/tcp_connection.png)
