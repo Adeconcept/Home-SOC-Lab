@@ -1,4 +1,4 @@
-# Week 8 Project Report
+# Project Report
 
 ## Project
 
@@ -8,14 +8,22 @@
 
 Test whether selected attacker-like behaviours are generated, collected, ingested, parsed, detected, investigated, and cleaned up safely.
 
+
+---
+
+
 ## Validation Summary
 
 | Validation | Security question | Result | Decision |
 |---|---|---|---|
-| VAL-001 | Is system-information discovery visible? | [Add actual result] | Draft or defer DET-004 |
-| VAL-002 | Is network discovery visible as a sequence? | [Add actual result] | Draft or defer DET-005 |
-| VAL-003 | Is command-shell and file activity reconstructable? | [Add actual result] | Draft or defer DET-006 |
-| VAL-004 | Does DET-002 detect the selected obfuscation method? | [Add actual result] | Keep, tune, or add DET-007 |
+| VAL-001 | Is system-information discovery visible? | Telemetry validated; Sysmon collected `systeminfo.exe` but no alert triggered. | Defer standalone alerting; track context in backlog. |
+| VAL-002 | Is network discovery visible as a sequence? | Telemetry validated; multiple utilities were logged in sequence but missed by alerts. | Draft DET-005 sequence behavioral correlation. |
+| VAL-003 | Is command-shell and file activity reconstructable? | Telemetry validated; `cmd.exe` process execution logged cleanly under PowerShell. | Defer broad rule; draft risky-path DET-006. |
+| VAL-004 | Does DET-002 detect the selected obfuscation method? | Detection validated; Base64 encoding argument flags matched perfectly. | Keep DET-002; add broader string rule DET-007 to backlog. |
+
+
+--
+
 
 ## Decisions and Value
 
@@ -49,6 +57,10 @@ Discovery and command-shell tools are common, so candidates use combinations, un
 
 **Value:** Demonstrates signal-quality judgment.
 
+
+---
+
+
 ## Detection Improvement Outcome
 
 | Candidate | Behaviour | Status |
@@ -56,20 +68,27 @@ Discovery and command-shell tools are common, so candidates use combinations, un
 | DET-004 | Clustered or unusual system discovery | Backlog |
 | DET-005 | Multiple network-discovery commands | Backlog |
 | DET-006 | Shell script execution from a risky path | Backlog |
-| DET-007 | Potentially obfuscated PowerShell | [Drafted or Not Required] |
+| DET-007 | Potentially obfuscated PowerShell | Backlog |
+
+
+---
+
 
 ## Quality Reporting
 
-Use actual counts:
+- Tests executed successfully: `4`
+- Tests with Sysmon telemetry: `4`
+- Tests ingested into Splunk: `4`
+- Existing detections triggered: `1`
+- Detection gaps identified: `3`
+- Cleanup checks passed: `4`
+- Security controls blocked activity: `0` *(Windows Defender real-time bypass applied successfully)*
 
-- Tests executed successfully: `[Add count]`
-- Tests with Sysmon telemetry: `[Add count]`
-- Tests ingested into Splunk: `[Add count]`
-- Existing detections triggered: `[Add count]`
-- Detection gaps identified: `[Add count]`
-- Cleanup checks passed: `[Add count]`
-- Security controls blocked activity: `[Add count]`
+
+
+---
+
 
 ## Operational Value
 
-The project demonstrates how controlled emulation can confirm telemetry, test detections, identify blind spots, prioritize improvements, support investigation, and verify endpoint recovery.
+This project demonstrates how controlled emulation can confirm telemetry, test detections, identify blind spots, prioritize improvements, support investigation, and verify endpoint recovery.
