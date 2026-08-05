@@ -1,5 +1,5 @@
 {
-  "name": "Week 8 Atomic Validation Coverage",
+  "name": "Atomic Validation Coverage",
   "versions": {
     "attack": "18",
     "navigator": "5.1.0",
@@ -50,13 +50,13 @@
     {
       "techniqueID": "T1110.001",
       "score": 2,
-      "comment": "Week 7 DET-001 validated detection.",
+      "comment": "DET-001 validated detection.",
       "enabled": true
     },
     {
       "techniqueID": "T1059.001",
       "score": 2,
-      "comment": "Week 7 PowerShell detection coverage.",
+      "comment": "PowerShell detection coverage.",
       "enabled": true
     }
   ],
@@ -82,7 +82,7 @@
   "metadata": [
     {
       "name": "Project",
-      "value": "Week 8 Atomic Red Team Detection Validation Lab"
+      "value": "Atomic Red Team Detection Validation Lab"
     },
     {
       "name": "Scope",
