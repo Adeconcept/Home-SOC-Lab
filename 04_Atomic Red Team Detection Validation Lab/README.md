@@ -157,37 +157,9 @@ Test matrix: [Atomic-Validation/Test-Matrix.md](https://github.com/Adeconcept/Ho
 |---|---|---|
 | VAL-001: T1082 System Information Discovery | ![Extracting process details](https://github.com/Adeconcept/Home-SOC-Lab/blob/af04dbfb616f3c757f180d9821938387be860a4e/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/01_Val_001_extract%20data.png) | [VAL-001 System Information Discovery](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-001-System-Information-Discovery/Validation-Report.md) |
 | VAL-002: T1016 Network Configuration Discovery | ![Splunk Search](https://github.com/Adeconcept/Home-SOC-Lab/blob/2c39758f4b1940c99bd1cd26fff27e797dc01102/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/03_Val_002_network_request_query.png) | [VAL-002 Network Configuration Discovery](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-002-Network-Configuration-Discovery/Validation-Report.md) |
-| VAL-003: T1059.003 Windows Command Shell | ![Splunk Search](https://github.com/Adeconcept/Home-SOC-Lab/blob/78ee2aa1b5138b82b0c8af7214bc8e99c95dc045/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/05_Val_003_spl_prcoess_%26_file_creation_query.png) | [VAL-003 Windows Command Shell](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-003-Windows-Command-Shell/Validation-Report.md)
- |
+| VAL-003: T1059.003 Windows Command Shell | ![Splunk Search](https://github.com/Adeconcept/Home-SOC-Lab/blob/78ee2aa1b5138b82b0c8af7214bc8e99c95dc045/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/05_Val_003_spl_prcoess_%26_file_creation_query.png) | [VAL-003 Windows Command Shell](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-003-Windows-Command-Shell/Validation-Report.md) |
 | VAL-004: T1027 Obfuscated Files or Information | ![Splunk Search](https://github.com/Adeconcept/Home-SOC-Lab/blob/15c0507614ffefc34d8b61a968c8ffbe1f1e2681/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/09_Val_004_broader_investigation.png) | [VAL-004 Obfuscated PowerShell](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-004-Obfuscated-PowerShell/Validation-Report.md) |
 
-
-- [VAL-001 System Information Discovery](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-001-System-Information-Discovery/Validation-Report.md)
-
-![Extracting process details](https://github.com/Adeconcept/Home-SOC-Lab/blob/af04dbfb616f3c757f180d9821938387be860a4e/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/01_Val_001_extract%20data.png)
-
-*Extracting process details.*
-  
-- [VAL-002 Network Configuration Discovery](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-002-Network-Configuration-Discovery/Validation-Report.md)
-
-![Splunk Search](https://github.com/Adeconcept/Home-SOC-Lab/blob/2c39758f4b1940c99bd1cd26fff27e797dc01102/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/03_Val_002_network_request_query.png)
-
-*Splunk search for ipconfig and other network related query.*
-
-
-- [VAL-003 Windows Command Shell](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-003-Windows-Command-Shell/Validation-Report.md)
-
-![Splunk Search](https://github.com/Adeconcept/Home-SOC-Lab/blob/78ee2aa1b5138b82b0c8af7214bc8e99c95dc045/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/05_Val_003_spl_prcoess_%26_file_creation_query.png)
-
-*Figure 1. Splunk search for process & file creation.*
-
-
-- [VAL-004 Obfuscated PowerShell](https://github.com/Adeconcept/Home-SOC-Lab/blob/6eb6a6fa43f4c879205f03dafd3028358b9d9283/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Atomic%20Validation/VAL-004-Obfuscated-PowerShell/Validation-Report.md)
-
-
-![Splunk Search](https://github.com/Adeconcept/Home-SOC-Lab/blob/15c0507614ffefc34d8b61a968c8ffbe1f1e2681/04_Atomic%20Red%20Team%20Detection%20Validation%20Lab/Screenshots/09_Val_004_broader_investigation.png)
-
-*Detection search with broader investigation query.*
 
 ---
 
