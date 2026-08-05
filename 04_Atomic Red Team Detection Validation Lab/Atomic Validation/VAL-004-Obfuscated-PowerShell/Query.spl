@@ -1,0 +1,45 @@
+# Step 1, run DET-002 unchanged
+index=endpoint
+source="val004-sysmon.csv"
+Id="1"
+Message="*powershell*"
+(
+    Message="*-EncodedCommand*"
+    OR Message="*-enc *"
+)
+| table _time host Message
+
+
+---
+
+
+# Step 2, broad investigation
+index=endpoint
+source="val004-sysmon.csv"
+Id="1"
+Message="*powershell*"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time host User ParentImage CommandLine
+
+---
+
+# Step 3, DET-007 learning candidate
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+Message="*powershell*"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| eval obfuscation_signal=case(
+    match(lower(CommandLine),"encodedcommand|-enc\s"),"encoded argument",
+    match(lower(CommandLine),"invoke-expression|iex"),"dynamic execution",
+    match(CommandLine,"`"),"backtick usage",
+    match(lower(CommandLine),"frombase64string"),"base64 decoding",
+    match(lower(CommandLine),"\[char\]"),"character construction",
+    true(),"none"
+)
+| where obfuscation_signal!="none"
+| table _time host User ParentImage CommandLine obfuscation_signal
