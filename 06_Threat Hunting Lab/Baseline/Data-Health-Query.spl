@@ -1,0 +1,21 @@
+# Source inventory
+index=endpoint
+| stats count earliest(_time) AS first_event latest(_time) AS last_event by source sourcetype host
+| convert ctime(first_event) ctime(last_event)
+| sort host sourcetype source
+
+# Event IDs
+index=endpoint
+| stats count by sourcetype Id
+| sort sourcetype - count
+
+# Sources
+index=endpoint
+| stats count by source
+| sort - count
+
+# Potential duplicates
+index=endpoint
+| stats count by _time host Id Message
+| where count > 1
+| sort - count
