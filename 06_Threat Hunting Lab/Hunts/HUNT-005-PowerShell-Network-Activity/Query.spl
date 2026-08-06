@@ -1,0 +1,33 @@
+# PowerShell DNS
+index=endpoint
+sourcetype="csv:sysmon"
+Id="22"
+Message="*powershell.exe*"
+| rex field=Message "QueryName:\s+(?<QueryName>[^\r\n]+)"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time source host User Image QueryName
+| sort 0 _time
+
+# PowerShell connections
+index=endpoint
+sourcetype="csv:sysmon"
+Id="3"
+Message="*powershell.exe*"
+| rex field=Message "DestinationIp:\s+(?<DestinationIp>[^\r\n]+)"
+| rex field=Message "DestinationPort:\s+(?<DestinationPort>[^\r\n]+)"
+| rex field=Message "Protocol:\s+(?<Protocol>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time source host User DestinationIp DestinationPort Protocol
+| sort 0 _time
+
+# Low-frequency PowerShell DNS destinations
+index=endpoint
+sourcetype="csv:sysmon"
+Id="22"
+Message="*powershell.exe*"
+| rex field=Message "QueryName:\s+(?<QueryName>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| stats count earliest(_time) AS first_seen latest(_time) AS last_seen by host User QueryName
+| convert ctime(first_seen) ctime(last_seen)
+| sort count
