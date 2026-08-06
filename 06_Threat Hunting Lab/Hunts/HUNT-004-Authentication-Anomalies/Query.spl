@@ -1,0 +1,26 @@
+# Broad chronology
+index=endpoint
+sourcetype="csv:windows_security"
+(Id="4624" OR Id="4625")
+| sort 0 _time
+| table _time source host Id Message
+
+# Controlled account
+index=endpoint
+sourcetype="csv:windows_security"
+Message="*labtest*"
+(Id="4624" OR Id="4625")
+| sort 0 _time
+| table _time source host Id Message
+
+# Extract and summarize
+index=endpoint
+sourcetype="csv:windows_security"
+(Id="4624" OR Id="4625")
+| rex field=Message "Account For Which Logon Failed:[\s\S]*?Account Name:\s+(?<FailedUser>[^\r\n]+)"
+| rex field=Message "New Logon:[\s\S]*?Account Name:\s+(?<SuccessfulUser>[^\r\n]+)"
+| eval Account=coalesce(FailedUser, SuccessfulUser)
+| where isnotnull(Account)
+| stats count(eval(Id="4625")) AS failures count(eval(Id="4624")) AS successes earliest(_time) AS first_seen latest(_time) AS last_seen values(source) AS sources by host Account
+| where failures >= 3 AND successes >= 1
+| convert ctime(first_seen) ctime(last_seen)
