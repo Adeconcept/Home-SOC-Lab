@@ -1,0 +1,47 @@
+# 1. All PowerShell execution
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+Message="*powershell*"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| table _time source host User ParentImage CommandLine
+| sort 0 _time
+
+# 2. Categorize signals
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+Message="*powershell*"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| eval Signal=case(
+    match(lower(CommandLine),"encodedcommand|-enc\s"),"Encoded argument",
+    match(lower(CommandLine),"frombase64string"),"Base64 decoding",
+    match(lower(CommandLine),"invoke-expression|\biex\b"),"Dynamic execution",
+    match(lower(CommandLine),"\[char\]"),"Character construction",
+    match(CommandLine,"`"),"Backtick usage",
+    true(),"No listed signal"
+)
+| stats count values(CommandLine) AS command_lines values(ParentImage) AS parent_processes by User Signal
+| sort - count
+
+# 3. Chronological matched events
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+Message="*powershell*"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| eval Signal=case(
+    match(lower(CommandLine),"encodedcommand|-enc\s"),"Encoded argument",
+    match(lower(CommandLine),"frombase64string"),"Base64 decoding",
+    match(lower(CommandLine),"invoke-expression|\biex\b"),"Dynamic execution",
+    match(lower(CommandLine),"\[char\]"),"Character construction",
+    match(CommandLine,"`"),"Backtick usage",
+    true(),"No listed signal"
+)
+| where Signal!="No listed signal"
+| table _time source host Signal CommandLine
+| sort 0 _time
