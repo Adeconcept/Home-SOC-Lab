@@ -1,0 +1,39 @@
+# Parent-child baseline
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| eval ChildProcess=lower(mvindex(split(Image,"\\"),-1))
+| eval ParentProcess=lower(mvindex(split(ParentImage,"\\"),-1))
+| stats count earliest(_time) AS first_seen latest(_time) AS last_seen by ParentProcess ChildProcess User
+| convert ctime(first_seen) ctime(last_seen)
+| sort count
+
+# Command interpreter parents
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| eval ChildProcess=lower(mvindex(split(Image,"\\"),-1))
+| eval ParentProcess=lower(mvindex(split(ParentImage,"\\"),-1))
+| where ChildProcess IN ("powershell.exe","pwsh.exe","cmd.exe","wscript.exe","cscript.exe")
+| stats count values(CommandLine) AS command_lines earliest(_time) AS first_seen latest(_time) AS last_seen by ParentProcess ChildProcess User
+| convert ctime(first_seen) ctime(last_seen)
+| sort count
+
+# Office or browser parents
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+| rex field=Message "Image:\s+(?<Image>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| where match(lower(Image),"powershell.exe|cmd.exe|wscript.exe|cscript.exe")
+  AND match(lower(ParentImage),"winword.exe|excel.exe|outlook.exe|powerpnt.exe|chrome.exe|msedge.exe|firefox.exe")
+| table _time host User ParentImage Image CommandLine
