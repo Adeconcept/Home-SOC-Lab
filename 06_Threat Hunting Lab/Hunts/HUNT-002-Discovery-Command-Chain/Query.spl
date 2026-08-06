@@ -1,0 +1,40 @@
+# Relevant discovery commands
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "ParentImage:\s+(?<ParentImage>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| eval DiscoveryType=case(
+    match(lower(CommandLine),"systeminfo|get-computerinfo"),"System information",
+    match(lower(CommandLine),"hostname|computername"),"Hostname",
+    match(lower(CommandLine),"ipconfig|get-netipconfiguration"),"IP configuration",
+    match(lower(CommandLine),"route print|get-netroute"),"Routing",
+    match(lower(CommandLine),"arp -a|get-netneighbor"),"ARP or neighbours",
+    match(lower(CommandLine),"whoami"),"User discovery",
+    true(),"Other"
+)
+| where DiscoveryType!="Other"
+| table _time source host User ParentImage DiscoveryType CommandLine
+| sort 0 _time
+
+# Five-minute grouping
+index=endpoint
+sourcetype="csv:sysmon"
+Id="1"
+| rex field=Message "CommandLine:\s+(?<CommandLine>[^\r\n]+)"
+| rex field=Message "User:\s+(?<User>[^\r\n]+)"
+| eval DiscoveryType=case(
+    match(lower(CommandLine),"systeminfo|get-computerinfo"),"System information",
+    match(lower(CommandLine),"hostname|computername"),"Hostname",
+    match(lower(CommandLine),"ipconfig|get-netipconfiguration"),"IP configuration",
+    match(lower(CommandLine),"route print|get-netroute"),"Routing",
+    match(lower(CommandLine),"arp -a|get-netneighbor"),"ARP or neighbours",
+    match(lower(CommandLine),"whoami"),"User discovery",
+    true(),null()
+)
+| where isnotnull(DiscoveryType)
+| bin _time span=5m
+| stats count dc(DiscoveryType) AS unique_discovery_types values(DiscoveryType) AS discovery_types values(CommandLine) AS command_lines by _time host User
+| where unique_discovery_types >= 2
+| sort 0 _time
