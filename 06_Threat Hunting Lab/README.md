@@ -142,6 +142,10 @@ index=sysmon EventCode=1 Image="*powershell.exe"
 | regex CommandLine="(?i)\s-(enc?|encodedcommand|w(in)?(hidden)?)\s+[A-Za-z0-9+/=]{20,}"
 ```
 
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/0d12f8f82787e6def91cdf95e77a24391125d639/06_Threat%20Hunting%20Lab/Screenshots/hunt001-02-obfuscation-signals.png)
+
+
+
 ---
 
 
@@ -170,6 +174,11 @@ index=sysmon EventCode=1 Image IN ("*whoami.exe", "*net.exe", "*ipconfig.exe", "
 ### Detection Opportunity
 
 **DET-008 Decision:** Propose a correlation rule that triggers when 3 distinct administrative enumeration commands launch from the same `ProcessID` parent scope within a rolling 60-second window.
+
+
+
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/0d12f8f82787e6def91cdf95e77a24391125d639/06_Threat%20Hunting%20Lab/Screenshots/hunt002-02-five-minute-grouping.png)
+
 
 
 ---
@@ -204,6 +213,9 @@ index=sysmon EventCode=1 Image IN ("*cmd.exe", "*powershell.exe")
 index=sysmon EventCode=1 Image IN ("*cmd.exe", "*powershell.exe") AND ParentImage IN ("*chrome.exe", "*msedgewebview2.exe", "*winword.exe", "*excel.exe")
 ```
 
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/f2f3369aa4c63e05c27246f37b95b24a0180edc2/06_Threat%20Hunting%20Lab/Screenshots/hunt003-03-office-browser-hunt.png)
+
+
 ---
 
 
@@ -232,6 +244,8 @@ index=security (EventCode=4624 OR EventCode=4625) Logon_Type=2
 ### Detection Opportunity
 
 Enrich the analysis by correlating authentication telemetry with Sysmon Event ID 1 tracking. This allows the system to determine if a local process or programmatic script was passing the bad credentials, as opposed to manual interactive keyboard entries via `winlogon.exe`.
+
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/c09031f9cb83bbc65a6b4e329f7b77b78686249b/06_Threat%20Hunting%20Lab/Screenshots/hunt004-01-authentication-events.png)
 
 
 ---
@@ -266,6 +280,8 @@ Use code with caution.| stats values(QueryName) by Image, Computer, ProcessId
 ### Detection Opportunity
 
 **DET-010 Decision:** Create a baseline detection candidate highlighting instances where interactive shell processes (powershell.exe, pwsh.exe) run external DNS translations that bypass internal corporate domain endpoints or localized network gateways.
+
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/bea6f43b87210f05c74690996a39bdc151ca503d/06_Threat%20Hunting%20Lab/Screenshots/hunt005-01-powershell-dns.png)
 
 
 ---
