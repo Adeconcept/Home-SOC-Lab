@@ -89,6 +89,8 @@ The command wrapper initiated a heavily packed payload utilizing the `-EncodedCo
 
 Cross-referencing the execution timestamps against the laboratory control logs confirmed this event correlated precisely with scheduled adversary-emulation tests.
 
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/0d12f8f82787e6def91cdf95e77a24391125d639/06_Threat%20Hunting%20Lab/Screenshots/hunt001-02-obfuscation-signals.png)
+
 
 ---
 
