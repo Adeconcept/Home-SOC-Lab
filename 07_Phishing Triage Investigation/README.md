@@ -10,6 +10,12 @@ The objective was to practise the workflow of a Level 1 SOC analyst rather than 
 
 ---
 
+![Alert Queue](https://github.com/Adeconcept/Home-SOC-Lab/blob/883883c264add96515d37d6d83598b512eb5b42a/07_Phishing%20Triage%20Investigation/Screenshots/00_Alert_Queue.png)
+
+
+
+---
+
 ## Investigation Objectives
 
 * Triage suspicious email alerts
@@ -242,9 +248,4 @@ This exercise reinforced several principles of SOC investigation:
 This project documents cybersecurity training performed in an authorized TryHackMe simulation environment.
 
 Screenshots and reports are provided to demonstrate investigation methodology. Challenge flags, answers, credentials, and unnecessary walkthrough information are intentionally excluded.
-
----
-
-![Alert Queue](https://github.com/Adeconcept/Home-SOC-Lab/blob/883883c264add96515d37d6d83598b512eb5b42a/07_Phishing%20Triage%20Investigation/Screenshots/00_Alert_Queue.png)
-
 
