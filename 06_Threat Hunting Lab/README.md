@@ -102,11 +102,11 @@ Reliable production baselines would require continuous collection over represent
 
 | Hunt     | Security question                                    | Verdict  | Primary output |
 | -------- | ---------------------------------------------------- | -------- | -------------- |
-| HUNT-001 | Was PowerShell executed using obfuscation?           | Benign Positive (Testing)| Optimized regex SPL for Base64 |
-| HUNT-002 | Were multiple discovery commands executed rapidly?   | Benign Positive (Testing)| Slidewindow transaction analytic |
-| HUNT-003 | Did unusual processes launch command interpreters?   | Negative Finding         | Parent/Child exclusion baseline |
-| HUNT-004 | Did failed authentication precede successful access? | Benign (User Error)      | Temporal join multi-Event Rule |
-| HUNT-005 | Did PowerShell produce DNS or network activity?      | Benign Positive (Testing)| DNS-to-Process lineage Query |
+| [HUNT-001](https://github.com/Adeconcept/Home-SOC-Lab/tree/c69051bd58487272494f7ac1f5b004d70b372fd3/06_Threat%20Hunting%20Lab/Hunts/HUNT-001-PowerShell-Obfuscation) | Was PowerShell executed using obfuscation?           | Benign Positive (Testing)| Optimized regex SPL for Base64 |
+| [HUNT-002](https://github.com/Adeconcept/Home-SOC-Lab/tree/c69051bd58487272494f7ac1f5b004d70b372fd3/06_Threat%20Hunting%20Lab/Hunts/HUNT-002-Discovery-Command-Chain) | Were multiple discovery commands executed rapidly?   | Benign Positive (Testing)| Slidewindow transaction analytic |
+| [HUNT-003](https://github.com/Adeconcept/Home-SOC-Lab/tree/c69051bd58487272494f7ac1f5b004d70b372fd3/06_Threat%20Hunting%20Lab/Hunts/HUNT-003-Unusual-Parent-Child) | Did unusual processes launch command interpreters?   | Negative Finding         | Parent/Child exclusion baseline |
+| [HUNT-004](https://github.com/Adeconcept/Home-SOC-Lab/tree/c69051bd58487272494f7ac1f5b004d70b372fd3/06_Threat%20Hunting%20Lab/Hunts/HUNT-004-Authentication-Anomalies) | Did failed authentication precede successful access? | Benign (User Error)      | Temporal join multi-Event Rule |
+| [HUNT-005](https://github.com/Adeconcept/Home-SOC-Lab/tree/c69051bd58487272494f7ac1f5b004d70b372fd3/06_Threat%20Hunting%20Lab/Hunts/HUNT-005-PowerShell-Network-Activity) | Did PowerShell produce DNS or network activity?      | Benign Positive (Testing)| DNS-to-Process lineage Query |
 
 
 ---
