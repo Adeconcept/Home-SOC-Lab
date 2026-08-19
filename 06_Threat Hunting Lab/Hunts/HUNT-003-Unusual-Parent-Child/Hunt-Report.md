@@ -1,5 +1,8 @@
 # Hunt Report: HUNT-003 Unusual Parent-Child Relationships
 
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/f2f3369aa4c63e05c27246f37b95b24a0180edc2/06_Threat%20Hunting%20Lab/Screenshots/hunt003-03-office-browser-hunt.png)
+
+
 ---
 
 
