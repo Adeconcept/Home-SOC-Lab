@@ -1,5 +1,9 @@
 # Hunt Report: HUNT-002 Rapid Discovery-Command Sequence
 
+
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/0d12f8f82787e6def91cdf95e77a24391125d639/06_Threat%20Hunting%20Lab/Screenshots/hunt002-02-five-minute-grouping.png)
+
+
 ---
 
 
