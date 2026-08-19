@@ -1,5 +1,8 @@
 # Hunt Report: HUNT-004 Authentication Failures Followed by Success
 
+
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/c09031f9cb83bbc65a6b4e329f7b77b78686249b/06_Threat%20Hunting%20Lab/Screenshots/hunt004-01-authentication-events.png)
+
 ---
 
 
