@@ -109,7 +109,7 @@ This forms the foundation of modern Security Operations Centers (SOCs).
 
 
 
-![Architecture](Screenshots/16_architechture_drawing.png)
+![Architecture](Screenshots/01_Identity_architechture.png.png)
 
 
 
