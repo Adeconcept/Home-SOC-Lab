@@ -1,5 +1,8 @@
 # Hunt Report: HUNT-005 PowerShell Followed by DNS or Network Activity
 
+![Finding](https://github.com/Adeconcept/Home-SOC-Lab/blob/bea6f43b87210f05c74690996a39bdc151ca503d/06_Threat%20Hunting%20Lab/Screenshots/hunt005-01-powershell-dns.png)
+
+
 ---
 
 
